@@ -4,7 +4,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
         <span class="n">self</span><span class="p">.</span><span class="n">summary_index</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Document summaries
 </span>        <span class="n">self</span><span class="p">.</span><span class="n">chunk_index</span> <span class="o">=</span> <span class="p">{}</span>    <span class="c1"># Detailed chunks
-</span>    
+</span>
     <span class="k">def</span> <span class="nf">index_document</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">doc_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="c1"># Generate summary
 </span>        <span class="n">summary</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">summarize</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
@@ -12,53 +12,53 @@
             <span class="sh">'</span><span class="s">embedding</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="nf">embed</span><span class="p">(</span><span class="n">summary</span><span class="p">),</span>
             <span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">:</span> <span class="n">summary</span>
         <span class="p">}</span>
-        
+
         <span class="c1"># Create chunks
 </span>        <span class="n">chunks</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">chunk_text</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
         <span class="n">self</span><span class="p">.</span><span class="n">chunk_index</span><span class="p">[</span><span class="n">doc_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="p">{</span><span class="sh">'</span><span class="s">embedding</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="nf">embed</span><span class="p">(</span><span class="n">chunk</span><span class="p">),</span> <span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">:</span> <span class="n">chunk</span><span class="p">}</span>
             <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span>
         <span class="p">]</span>
-    
+
     <span class="k">def</span> <span class="nf">retrieve</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
         <span class="c1"># Step 1: Find relevant documents via summaries
 </span>        <span class="n">query_emb</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">embed</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
         <span class="n">relevant_docs</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">search_summaries</span><span class="p">(</span><span class="n">query_emb</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-        
+
         <span class="c1"># Step 2: Retrieve detailed chunks from relevant docs
 </span>        <span class="n">chunks</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">doc_id</span> <span class="ow">in</span> <span class="n">relevant_docs</span><span class="p">:</span>
             <span class="n">doc_chunks</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">search_chunks</span><span class="p">(</span>
-                <span class="n">doc_id</span><span class="p">,</span> 
-                <span class="n">query_emb</span><span class="p">,</span> 
+                <span class="n">doc_id</span><span class="p">,</span>
+                <span class="n">query_emb</span><span class="p">,</span>
                 <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="o">//</span><span class="mi">3</span>
             <span class="p">)</span>
             <span class="n">chunks</span><span class="p">.</span><span class="nf">extend</span><span class="p">(</span><span class="n">doc_chunks</span><span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="n">chunks</span>
 </code></pre></div></div> <h2 id="query-decomposition">Query Decomposition</h2> <p>Break complex queries into simpler sub-queries:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
 
 <span class="k">class</span> <span class="nc">QueryDecomposer</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">llm</span><span class="p">):</span>
         <span class="n">self</span><span class="p">.</span><span class="n">llm</span> <span class="o">=</span> <span class="n">llm</span>
-    
+
     <span class="k">def</span> <span class="nf">decompose</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">complex_query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"""</span><span class="s">
         Break down this complex question into simpler sub-questions:
-        
+
         Question: </span><span class="si">{</span><span class="n">complex_query</span><span class="si">}</span><span class="s">
-        
+
         Sub-questions (one per line):
         </span><span class="sh">"""</span>
-        
+
         <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
         <span class="n">sub_queries</span> <span class="o">=</span> <span class="p">[</span><span class="n">q</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">response</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">)</span> <span class="k">if</span> <span class="n">q</span><span class="p">.</span><span class="nf">strip</span><span class="p">()]</span>
         <span class="k">return</span> <span class="n">sub_queries</span>
-    
+
     <span class="k">def</span> <span class="nf">answer_with_decomposition</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="c1"># Decompose query
 </span>        <span class="n">sub_queries</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">decompose</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-        
+
         <span class="c1"># Answer each sub-query
 </span>        <span class="n">sub_answers</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">sq</span> <span class="ow">in</span> <span class="n">sub_queries</span><span class="p">:</span>
@@ -69,7 +69,7 @@
                 <span class="sh">'</span><span class="s">answer</span><span class="sh">'</span><span class="p">:</span> <span class="n">answer</span><span class="p">,</span>
                 <span class="sh">'</span><span class="s">context</span><span class="sh">'</span><span class="p">:</span> <span class="n">context</span>
             <span class="p">})</span>
-        
+
         <span class="c1"># Synthesize final answer
 </span>        <span class="n">final_answer</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">synthesize</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">sub_answers</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">final_answer</span>
@@ -77,7 +77,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">llm</span><span class="p">,</span> <span class="n">retriever</span><span class="p">):</span>
         <span class="n">self</span><span class="p">.</span><span class="n">llm</span> <span class="o">=</span> <span class="n">llm</span>
         <span class="n">self</span><span class="p">.</span><span class="n">retriever</span> <span class="o">=</span> <span class="n">retriever</span>
-    
+
     <span class="k">def</span> <span class="nf">is_retrieval_needed</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sh">"""</span><span class="s">Determine if retrieval is necessary</span><span class="sh">"""</span>
         <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"""</span><span class="s">
@@ -87,55 +87,55 @@
         </span><span class="sh">"""</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="n">prompt</span><span class="p">).</span><span class="nf">strip</span><span class="p">().</span><span class="nf">upper</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">response</span> <span class="o">==</span> <span class="sh">"</span><span class="s">YES</span><span class="sh">"</span>
-    
+
     <span class="k">def</span> <span class="nf">assess_relevance</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">document</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sh">"""</span><span class="s">Score document relevance</span><span class="sh">"""</span>
         <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"""</span><span class="s">
         Rate the relevance of this document to the question (0-10):
-        
+
         Question: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s">
         Document: </span><span class="si">{</span><span class="n">document</span><span class="si">}</span><span class="s">
-        
+
         Relevance score:
         </span><span class="sh">"""</span>
         <span class="n">score</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="n">prompt</span><span class="p">).</span><span class="nf">strip</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">score</span> <span class="o">/</span> <span class="mf">10.0</span>
-    
+
     <span class="k">def</span> <span class="nf">verify_answer</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">answer</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sh">"""</span><span class="s">Verify if answer is supported by context</span><span class="sh">"""</span>
         <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"""</span><span class="s">
         Is this answer fully supported by the given context?
-        
+
         Context: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="s">
         Question: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s">
         Answer: </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s">
-        
+
         Respond with SUPPORTED or NOT_SUPPORTED:
         </span><span class="sh">"""</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="n">prompt</span><span class="p">).</span><span class="nf">strip</span><span class="p">().</span><span class="nf">upper</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">response</span> <span class="o">==</span> <span class="sh">"</span><span class="s">SUPPORTED</span><span class="sh">"</span>
-    
+
     <span class="k">def</span> <span class="nf">generate_with_reflection</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="c1"># Check if retrieval is needed
 </span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">self</span><span class="p">.</span><span class="nf">is_retrieval_needed</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-        
+
         <span class="c1"># Retrieve documents
 </span>        <span class="n">docs</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">retriever</span><span class="p">.</span><span class="nf">retrieve</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-        
+
         <span class="c1"># Filter by relevance
 </span>        <span class="n">relevant_docs</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">doc</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">docs</span>
             <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="nf">assess_relevance</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">doc</span><span class="p">[</span><span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mf">0.7</span>
         <span class="p">]</span>
-        
+
         <span class="k">if</span> <span class="ow">not</span> <span class="n">relevant_docs</span><span class="p">:</span>
             <span class="k">return</span> <span class="sh">"</span><span class="s">Insufficient information to answer the question.</span><span class="sh">"</span>
-        
+
         <span class="c1"># Generate answer
 </span>        <span class="n">context</span> <span class="o">=</span> <span class="sh">"</span><span class="se">\n\n</span><span class="sh">"</span><span class="p">.</span><span class="nf">join</span><span class="p">([</span><span class="n">d</span><span class="p">[</span><span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">relevant_docs</span><span class="p">])</span>
         <span class="n">answer</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Context: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="se">\n\n</span><span class="s">Question: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        
+
         <span class="c1"># Verify answer
 </span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">self</span><span class="p">.</span><span class="nf">verify_answer</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">answer</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
             <span class="c1"># Retry with different approach
@@ -143,7 +143,7 @@
                 <span class="sa">f</span><span class="sh">"</span><span class="s">Based strictly on this context, answer the question.</span><span class="se">\n</span><span class="sh">"</span>
                 <span class="sa">f</span><span class="sh">"</span><span class="s">Context: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="se">\n</span><span class="s">Question: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="sh">"</span>
             <span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="n">answer</span>
 </code></pre></div></div> <h2 id="contextual-compression">Contextual Compression</h2> <p>Reduce retrieved context to only relevant information:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelForSeq2SeqLM</span>
 
@@ -151,28 +151,28 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sh">"</span><span class="s">facebook/bart-large-cnn</span><span class="sh">"</span><span class="p">):</span>
         <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
         <span class="n">self</span><span class="p">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSeq2SeqLM</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
-    
+
     <span class="k">def</span> <span class="nf">compress_context</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">documents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sh">"""</span><span class="s">Extract only query-relevant information</span><span class="sh">"""</span>
         <span class="n">compressed_docs</span> <span class="o">=</span> <span class="p">[]</span>
-        
+
         <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">:</span>
             <span class="c1"># Create extraction prompt
 </span>            <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"""</span><span class="s">
             Extract only the information relevant to answering this question:
             Question: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s">
-            
+
             Document: </span><span class="si">{</span><span class="n">doc</span><span class="si">}</span><span class="s">
-            
+
             Relevant information:
             </span><span class="sh">"""</span>
-            
+
             <span class="n">inputs</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">tokenizer</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="sh">"</span><span class="s">pt</span><span class="sh">"</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
             <span class="n">outputs</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
             <span class="n">compressed</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-            
+
             <span class="n">compressed_docs</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">compressed</span><span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="sh">"</span><span class="se">\n\n</span><span class="sh">"</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">compressed_docs</span><span class="p">)</span>
 
 <span class="c1"># Usage
@@ -181,13 +181,13 @@
 <span class="k">def</span> <span class="nf">rag_with_compression</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="c1"># Retrieve documents
 </span>    <span class="n">docs</span> <span class="o">=</span> <span class="n">retriever</span><span class="p">.</span><span class="nf">retrieve</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    
+
     <span class="c1"># Compress context
 </span>    <span class="n">compressed_context</span> <span class="o">=</span> <span class="n">compressor</span><span class="p">.</span><span class="nf">compress_context</span><span class="p">(</span>
         <span class="n">query</span><span class="p">,</span>
         <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">]</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># Generate with compressed context
 </span>    <span class="n">answer</span> <span class="o">=</span> <span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Context: </span><span class="si">{</span><span class="n">compressed_context</span><span class="si">}</span><span class="se">\n\n</span><span class="s">Question: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">answer</span>
@@ -198,31 +198,31 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">documents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">embedding_model</span><span class="p">):</span>
         <span class="n">self</span><span class="p">.</span><span class="n">documents</span> <span class="o">=</span> <span class="n">documents</span>
         <span class="n">self</span><span class="p">.</span><span class="n">embedding_model</span> <span class="o">=</span> <span class="n">embedding_model</span>
-        
+
         <span class="c1"># BM25 index
 </span>        <span class="n">tokenized_docs</span> <span class="o">=</span> <span class="p">[</span><span class="n">doc</span><span class="p">.</span><span class="nf">lower</span><span class="p">().</span><span class="nf">split</span><span class="p">()</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">]</span>
         <span class="n">self</span><span class="p">.</span><span class="n">bm25</span> <span class="o">=</span> <span class="nc">BM25Okapi</span><span class="p">(</span><span class="n">tokenized_docs</span><span class="p">)</span>
-        
+
         <span class="c1"># Dense index
 </span>        <span class="n">self</span><span class="p">.</span><span class="n">doc_embeddings</span> <span class="o">=</span> <span class="n">embedding_model</span><span class="p">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
-    
+
     <span class="k">def</span> <span class="nf">retrieve</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">):</span>
         <span class="c1"># BM25 scores
 </span>        <span class="n">tokenized_query</span> <span class="o">=</span> <span class="n">query</span><span class="p">.</span><span class="nf">lower</span><span class="p">().</span><span class="nf">split</span><span class="p">()</span>
         <span class="n">bm25_scores</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">bm25</span><span class="p">.</span><span class="nf">get_scores</span><span class="p">(</span><span class="n">tokenized_query</span><span class="p">)</span>
         <span class="n">bm25_scores</span> <span class="o">=</span> <span class="p">(</span><span class="n">bm25_scores</span> <span class="o">-</span> <span class="n">bm25_scores</span><span class="p">.</span><span class="nf">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">bm25_scores</span><span class="p">.</span><span class="nf">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">bm25_scores</span><span class="p">.</span><span class="nf">min</span><span class="p">())</span>
-        
+
         <span class="c1"># Dense retrieval scores
 </span>        <span class="n">query_embedding</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">embedding_model</span><span class="p">.</span><span class="nf">encode</span><span class="p">([</span><span class="n">query</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">dense_scores</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">doc_embeddings</span><span class="p">,</span> <span class="n">query_embedding</span><span class="p">)</span>
         <span class="n">dense_scores</span> <span class="o">=</span> <span class="p">(</span><span class="n">dense_scores</span> <span class="o">-</span> <span class="n">dense_scores</span><span class="p">.</span><span class="nf">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">dense_scores</span><span class="p">.</span><span class="nf">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">dense_scores</span><span class="p">.</span><span class="nf">min</span><span class="p">())</span>
-        
+
         <span class="c1"># Combine scores
 </span>        <span class="n">hybrid_scores</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">dense_scores</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">bm25_scores</span>
-        
+
         <span class="c1"># Get top-k
 </span>        <span class="n">top_indices</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">argsort</span><span class="p">(</span><span class="n">hybrid_scores</span><span class="p">)[</span><span class="o">-</span><span class="n">k</span><span class="p">:][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        
+
         <span class="k">return</span> <span class="p">[</span>
             <span class="p">{</span>
                 <span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="n">documents</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
@@ -237,18 +237,18 @@
 <span class="k">class</span> <span class="nc">ReRanker</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sh">"</span><span class="s">cross-encoder/ms-marco-MiniLM-L-6-v2</span><span class="sh">"</span><span class="p">):</span>
         <span class="n">self</span><span class="p">.</span><span class="n">model</span> <span class="o">=</span> <span class="nc">CrossEncoder</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
-    
+
     <span class="k">def</span> <span class="nf">rerank</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">documents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">],</span> <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
         <span class="c1"># Prepare pairs
 </span>        <span class="n">pairs</span> <span class="o">=</span> <span class="p">[[</span><span class="n">query</span><span class="p">,</span> <span class="n">doc</span><span class="p">[</span><span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">]]</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">]</span>
-        
+
         <span class="c1"># Score with cross-encoder
 </span>        <span class="n">scores</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
-        
+
         <span class="c1"># Add scores and sort
 </span>        <span class="k">for</span> <span class="n">doc</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">scores</span><span class="p">):</span>
             <span class="n">doc</span><span class="p">[</span><span class="sh">'</span><span class="s">rerank_score</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
-        
+
         <span class="n">reranked</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="sh">'</span><span class="s">rerank_score</span><span class="sh">'</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">reranked</span><span class="p">[:</span><span class="n">top_k</span><span class="p">]</span>
 
@@ -256,15 +256,15 @@
 </span><span class="k">def</span> <span class="nf">advanced_rag</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="c1"># Initial retrieval (cast wide net)
 </span>    <span class="n">initial_docs</span> <span class="o">=</span> <span class="n">retriever</span><span class="p">.</span><span class="nf">retrieve</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-    
+
     <span class="c1"># Re-rank for precision
 </span>    <span class="n">reranker</span> <span class="o">=</span> <span class="nc">ReRanker</span><span class="p">()</span>
     <span class="n">final_docs</span> <span class="o">=</span> <span class="n">reranker</span><span class="p">.</span><span class="nf">rerank</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">initial_docs</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-    
+
     <span class="c1"># Generate answer
 </span>    <span class="n">context</span> <span class="o">=</span> <span class="sh">"</span><span class="se">\n\n</span><span class="sh">"</span><span class="p">.</span><span class="nf">join</span><span class="p">([</span><span class="n">d</span><span class="p">[</span><span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">final_docs</span><span class="p">])</span>
     <span class="n">answer</span> <span class="o">=</span> <span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Context: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="se">\n\n</span><span class="s">Question: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="p">{</span>
         <span class="sh">'</span><span class="s">answer</span><span class="sh">'</span><span class="p">:</span> <span class="n">answer</span><span class="p">,</span>
         <span class="sh">'</span><span class="s">sources</span><span class="sh">'</span><span class="p">:</span> <span class="n">final_docs</span>
@@ -274,55 +274,55 @@
         <span class="n">self</span><span class="p">.</span><span class="n">llm</span> <span class="o">=</span> <span class="n">llm</span>
         <span class="n">self</span><span class="p">.</span><span class="n">retriever</span> <span class="o">=</span> <span class="n">retriever</span>
         <span class="n">self</span><span class="p">.</span><span class="n">conversation_history</span> <span class="o">=</span> <span class="p">[]</span>
-    
+
     <span class="k">def</span> <span class="nf">rewrite_query</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">current_query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sh">"""</span><span class="s">Rewrite query with conversation context</span><span class="sh">"""</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">self</span><span class="p">.</span><span class="n">conversation_history</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">current_query</span>
-        
+
         <span class="n">history_text</span> <span class="o">=</span> <span class="sh">"</span><span class="se">\n</span><span class="sh">"</span><span class="p">.</span><span class="nf">join</span><span class="p">([</span>
             <span class="sa">f</span><span class="sh">"</span><span class="s">Q: </span><span class="si">{</span><span class="n">h</span><span class="p">[</span><span class="sh">'</span><span class="s">query</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s">A: </span><span class="si">{</span><span class="n">h</span><span class="p">[</span><span class="sh">'</span><span class="s">answer</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span>
             <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">conversation_history</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span>  <span class="c1"># Last 3 turns
 </span>        <span class="p">])</span>
-        
+
         <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"""</span><span class="s">
         Given this conversation history, rewrite the current question to be standalone:
-        
+
         History:
         </span><span class="si">{</span><span class="n">history_text</span><span class="si">}</span><span class="s">
-        
+
         Current question: </span><span class="si">{</span><span class="n">current_query</span><span class="si">}</span><span class="s">
-        
+
         Standalone question:
         </span><span class="sh">"""</span>
-        
+
         <span class="n">standalone_query</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="n">prompt</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">standalone_query</span>
-    
+
     <span class="k">def</span> <span class="nf">answer</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="c1"># Rewrite query with context
 </span>        <span class="n">standalone_query</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">rewrite_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-        
+
         <span class="c1"># Retrieve and generate
 </span>        <span class="n">docs</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">retriever</span><span class="p">.</span><span class="nf">retrieve</span><span class="p">(</span><span class="n">standalone_query</span><span class="p">)</span>
         <span class="n">context</span> <span class="o">=</span> <span class="sh">"</span><span class="se">\n\n</span><span class="sh">"</span><span class="p">.</span><span class="nf">join</span><span class="p">([</span><span class="n">d</span><span class="p">[</span><span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">])</span>
-        
+
         <span class="n">answer</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span>
             <span class="sa">f</span><span class="sh">"</span><span class="s">Context: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="se">\n\n</span><span class="s">Question: </span><span class="si">{</span><span class="n">standalone_query</span><span class="si">}</span><span class="sh">"</span>
         <span class="p">)</span>
-        
+
         <span class="c1"># Update history
 </span>        <span class="n">self</span><span class="p">.</span><span class="n">conversation_history</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
             <span class="sh">'</span><span class="s">query</span><span class="sh">'</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
             <span class="sh">'</span><span class="s">standalone_query</span><span class="sh">'</span><span class="p">:</span> <span class="n">standalone_query</span><span class="p">,</span>
             <span class="sh">'</span><span class="s">answer</span><span class="sh">'</span><span class="p">:</span> <span class="n">answer</span>
         <span class="p">})</span>
-        
+
         <span class="k">return</span> <span class="n">answer</span>
 </code></pre></div></div> <h2 id="monitoring-and-evaluation">Monitoring and Evaluation</h2> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">RAGMonitor</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
         <span class="n">self</span><span class="p">.</span><span class="n">metrics</span> <span class="o">=</span> <span class="p">[]</span>
-    
+
     <span class="k">def</span> <span class="nf">log_retrieval</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">docs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">],</span> <span class="n">answer</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="sh">"""</span><span class="s">Log retrieval for analysis</span><span class="sh">"""</span>
         <span class="n">self</span><span class="p">.</span><span class="n">metrics</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
@@ -332,7 +332,7 @@
             <span class="sh">'</span><span class="s">answer_length</span><span class="sh">'</span><span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">answer</span><span class="p">),</span>
             <span class="sh">'</span><span class="s">timestamp</span><span class="sh">'</span><span class="p">:</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
         <span class="p">})</span>
-    
+
     <span class="k">def</span> <span class="nf">evaluate_faithfulness</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">answer</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sh">"""</span><span class="s">Check if answer is grounded in context</span><span class="sh">"""</span>
         <span class="c1"># Use NLI model or LLM-based evaluation
@@ -344,7 +344,7 @@
         </span><span class="sh">"""</span>
         <span class="n">score</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="n">prompt</span><span class="p">).</span><span class="nf">strip</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">score</span>
-    
+
     <span class="k">def</span> <span class="nf">get_statistics</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
         <span class="sh">"""</span><span class="s">Return performance statistics</span><span class="sh">"""</span>
         <span class="k">return</span> <span class="p">{</span>

@@ -78,19 +78,19 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">model_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">use_gpu</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">True</span><span class="p">):</span>
         <span class="n">providers</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">CUDAExecutionProvider</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">CPUExecutionProvider</span><span class="sh">'</span><span class="p">]</span> \
                     <span class="k">if</span> <span class="n">use_gpu</span> <span class="k">else</span> <span class="p">[</span><span class="sh">'</span><span class="s">CPUExecutionProvider</span><span class="sh">'</span><span class="p">]</span>
-        
+
         <span class="n">self</span><span class="p">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">ort</span><span class="p">.</span><span class="nc">InferenceSession</span><span class="p">(</span>
             <span class="n">model_path</span><span class="p">,</span>
             <span class="n">providers</span><span class="o">=</span><span class="n">providers</span>
         <span class="p">)</span>
-        
+
         <span class="n">self</span><span class="p">.</span><span class="n">input_name</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="nf">get_inputs</span><span class="p">()[</span><span class="mi">0</span><span class="p">].</span><span class="n">name</span>
         <span class="n">self</span><span class="p">.</span><span class="n">output_name</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="nf">get_outputs</span><span class="p">()[</span><span class="mi">0</span><span class="p">].</span><span class="n">name</span>
-    
+
     <span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="c1"># Add preprocessing logic
 </span>        <span class="k">return</span> <span class="n">data</span><span class="p">.</span><span class="nf">astype</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span>
-    
+
     <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="n">processed</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">preprocess</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="n">outputs</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span>
@@ -98,7 +98,7 @@
             <span class="p">{</span><span class="n">self</span><span class="p">.</span><span class="n">input_name</span><span class="p">:</span> <span class="n">processed</span><span class="p">}</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    
+
     <span class="k">def</span> <span class="nf">batch_predict</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">batch_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">32</span><span class="p">):</span>
         <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">batch_data</span><span class="p">),</span> <span class="n">batch_size</span><span class="p">):</span>
@@ -122,7 +122,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">calibration_data</span><span class="p">):</span>
         <span class="n">self</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">calibration_data</span>
         <span class="n">self</span><span class="p">.</span><span class="n">iterator</span> <span class="o">=</span> <span class="nf">iter</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">data</span><span class="p">)</span>
-    
+
     <span class="k">def</span> <span class="nf">get_next</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="nf">next</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">iterator</span><span class="p">)</span>
@@ -146,16 +146,16 @@
     <span class="c1"># Warmup
 </span>    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
         <span class="n">session</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">input_data</span><span class="p">)</span>
-    
+
     <span class="c1"># Benchmark
 </span>    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">num_runs</span><span class="p">):</span>
         <span class="n">session</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">input_data</span><span class="p">)</span>
     <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
-    
+
     <span class="n">avg_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_runs</span>
     <span class="n">throughput</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">avg_time</span>
-    
+
     <span class="k">return</span> <span class="p">{</span>
         <span class="sh">'</span><span class="s">avg_latency_ms</span><span class="sh">'</span><span class="p">:</span> <span class="n">avg_time</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span>
         <span class="sh">'</span><span class="s">throughput_fps</span><span class="sh">'</span><span class="p">:</span> <span class="n">throughput</span>

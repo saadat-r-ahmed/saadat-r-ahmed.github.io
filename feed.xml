@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://saadat-r-ahmed.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://saadat-r-ahmed.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2025-11-27T12:50:35+00:00</updated><id>https://saadat-r-ahmed.github.io/feed.xml</id><title type="html">Saadat Rafid Ahmed</title><subtitle>Lecturer at BRAC University, ML Team Lead at Innospace Infotech Ltd. Research interests in NLP, Machine Learning Bias &amp; Ethics, and AI applications. </subtitle><entry><title type="html">Advanced RAG Techniques for Production Systems</title><link href="https://saadat-r-ahmed.github.io/blog/2024/rag-advanced-techniques/" rel="alternate" type="text/html" title="Advanced RAG Techniques for Production Systems"/><published>2024-11-25T09:00:00+00:00</published><updated>2024-11-25T09:00:00+00:00</updated><id>https://saadat-r-ahmed.github.io/blog/2024/rag-advanced-techniques</id><content type="html" xml:base="https://saadat-r-ahmed.github.io/blog/2024/rag-advanced-techniques/"><![CDATA[<h2 id="beyond-basic-rag">Beyond Basic RAG</h2> <p>While basic RAG systems provide a solid foundation, production applications require more sophisticated approaches to handle complex queries, ensure reliability, and maintain performance at scale.</p> <h2 id="hierarchical-rag">Hierarchical RAG</h2> <h3 id="concept">Concept</h3> <p>Hierarchical RAG organizes documents in a tree structure, enabling multi-level retrieval:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">HierarchicalRAG</span><span class="p">:</span>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://saadat-r-ahmed.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://saadat-r-ahmed.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2025-11-27T13:12:02+00:00</updated><id>https://saadat-r-ahmed.github.io/feed.xml</id><title type="html">Saadat Rafid Ahmed</title><subtitle>Lecturer at BRAC University, ML Team Lead at Innospace Infotech Ltd. Research interests in NLP, Machine Learning Bias &amp; Ethics, and AI applications. </subtitle><entry><title type="html">Advanced RAG Techniques for Production Systems</title><link href="https://saadat-r-ahmed.github.io/blog/2024/rag-advanced-techniques/" rel="alternate" type="text/html" title="Advanced RAG Techniques for Production Systems"/><published>2024-11-25T09:00:00+00:00</published><updated>2024-11-25T09:00:00+00:00</updated><id>https://saadat-r-ahmed.github.io/blog/2024/rag-advanced-techniques</id><content type="html" xml:base="https://saadat-r-ahmed.github.io/blog/2024/rag-advanced-techniques/"><![CDATA[<h2 id="beyond-basic-rag">Beyond Basic RAG</h2> <p>While basic RAG systems provide a solid foundation, production applications require more sophisticated approaches to handle complex queries, ensure reliability, and maintain performance at scale.</p> <h2 id="hierarchical-rag">Hierarchical RAG</h2> <h3 id="concept">Concept</h3> <p>Hierarchical RAG organizes documents in a tree structure, enabling multi-level retrieval:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">HierarchicalRAG</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
         <span class="n">self</span><span class="p">.</span><span class="n">summary_index</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Document summaries
 </span>        <span class="n">self</span><span class="p">.</span><span class="n">chunk_index</span> <span class="o">=</span> <span class="p">{}</span>    <span class="c1"># Detailed chunks
-</span>    
+</span>
     <span class="k">def</span> <span class="nf">index_document</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">doc_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="c1"># Generate summary
 </span>        <span class="n">summary</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">summarize</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
@@ -10,53 +10,53 @@
             <span class="sh">'</span><span class="s">embedding</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="nf">embed</span><span class="p">(</span><span class="n">summary</span><span class="p">),</span>
             <span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">:</span> <span class="n">summary</span>
         <span class="p">}</span>
-        
+
         <span class="c1"># Create chunks
 </span>        <span class="n">chunks</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">chunk_text</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
         <span class="n">self</span><span class="p">.</span><span class="n">chunk_index</span><span class="p">[</span><span class="n">doc_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="p">{</span><span class="sh">'</span><span class="s">embedding</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="nf">embed</span><span class="p">(</span><span class="n">chunk</span><span class="p">),</span> <span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">:</span> <span class="n">chunk</span><span class="p">}</span>
             <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span>
         <span class="p">]</span>
-    
+
     <span class="k">def</span> <span class="nf">retrieve</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
         <span class="c1"># Step 1: Find relevant documents via summaries
 </span>        <span class="n">query_emb</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">embed</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
         <span class="n">relevant_docs</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">search_summaries</span><span class="p">(</span><span class="n">query_emb</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-        
+
         <span class="c1"># Step 2: Retrieve detailed chunks from relevant docs
 </span>        <span class="n">chunks</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">doc_id</span> <span class="ow">in</span> <span class="n">relevant_docs</span><span class="p">:</span>
             <span class="n">doc_chunks</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">search_chunks</span><span class="p">(</span>
-                <span class="n">doc_id</span><span class="p">,</span> 
-                <span class="n">query_emb</span><span class="p">,</span> 
+                <span class="n">doc_id</span><span class="p">,</span>
+                <span class="n">query_emb</span><span class="p">,</span>
                 <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="o">//</span><span class="mi">3</span>
             <span class="p">)</span>
             <span class="n">chunks</span><span class="p">.</span><span class="nf">extend</span><span class="p">(</span><span class="n">doc_chunks</span><span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="n">chunks</span>
 </code></pre></div></div> <h2 id="query-decomposition">Query Decomposition</h2> <p>Break complex queries into simpler sub-queries:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
 
 <span class="k">class</span> <span class="nc">QueryDecomposer</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">llm</span><span class="p">):</span>
         <span class="n">self</span><span class="p">.</span><span class="n">llm</span> <span class="o">=</span> <span class="n">llm</span>
-    
+
     <span class="k">def</span> <span class="nf">decompose</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">complex_query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"""</span><span class="s">
         Break down this complex question into simpler sub-questions:
-        
+
         Question: </span><span class="si">{</span><span class="n">complex_query</span><span class="si">}</span><span class="s">
-        
+
         Sub-questions (one per line):
         </span><span class="sh">"""</span>
-        
+
         <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
         <span class="n">sub_queries</span> <span class="o">=</span> <span class="p">[</span><span class="n">q</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">response</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">)</span> <span class="k">if</span> <span class="n">q</span><span class="p">.</span><span class="nf">strip</span><span class="p">()]</span>
         <span class="k">return</span> <span class="n">sub_queries</span>
-    
+
     <span class="k">def</span> <span class="nf">answer_with_decomposition</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="c1"># Decompose query
 </span>        <span class="n">sub_queries</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">decompose</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-        
+
         <span class="c1"># Answer each sub-query
 </span>        <span class="n">sub_answers</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">sq</span> <span class="ow">in</span> <span class="n">sub_queries</span><span class="p">:</span>
@@ -67,7 +67,7 @@
                 <span class="sh">'</span><span class="s">answer</span><span class="sh">'</span><span class="p">:</span> <span class="n">answer</span><span class="p">,</span>
                 <span class="sh">'</span><span class="s">context</span><span class="sh">'</span><span class="p">:</span> <span class="n">context</span>
             <span class="p">})</span>
-        
+
         <span class="c1"># Synthesize final answer
 </span>        <span class="n">final_answer</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">synthesize</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">sub_answers</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">final_answer</span>
@@ -75,7 +75,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">llm</span><span class="p">,</span> <span class="n">retriever</span><span class="p">):</span>
         <span class="n">self</span><span class="p">.</span><span class="n">llm</span> <span class="o">=</span> <span class="n">llm</span>
         <span class="n">self</span><span class="p">.</span><span class="n">retriever</span> <span class="o">=</span> <span class="n">retriever</span>
-    
+
     <span class="k">def</span> <span class="nf">is_retrieval_needed</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sh">"""</span><span class="s">Determine if retrieval is necessary</span><span class="sh">"""</span>
         <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"""</span><span class="s">
@@ -85,55 +85,55 @@
         </span><span class="sh">"""</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="n">prompt</span><span class="p">).</span><span class="nf">strip</span><span class="p">().</span><span class="nf">upper</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">response</span> <span class="o">==</span> <span class="sh">"</span><span class="s">YES</span><span class="sh">"</span>
-    
+
     <span class="k">def</span> <span class="nf">assess_relevance</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">document</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sh">"""</span><span class="s">Score document relevance</span><span class="sh">"""</span>
         <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"""</span><span class="s">
         Rate the relevance of this document to the question (0-10):
-        
+
         Question: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s">
         Document: </span><span class="si">{</span><span class="n">document</span><span class="si">}</span><span class="s">
-        
+
         Relevance score:
         </span><span class="sh">"""</span>
         <span class="n">score</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="n">prompt</span><span class="p">).</span><span class="nf">strip</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">score</span> <span class="o">/</span> <span class="mf">10.0</span>
-    
+
     <span class="k">def</span> <span class="nf">verify_answer</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">answer</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sh">"""</span><span class="s">Verify if answer is supported by context</span><span class="sh">"""</span>
         <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"""</span><span class="s">
         Is this answer fully supported by the given context?
-        
+
         Context: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="s">
         Question: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s">
         Answer: </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="s">
-        
+
         Respond with SUPPORTED or NOT_SUPPORTED:
         </span><span class="sh">"""</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="n">prompt</span><span class="p">).</span><span class="nf">strip</span><span class="p">().</span><span class="nf">upper</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">response</span> <span class="o">==</span> <span class="sh">"</span><span class="s">SUPPORTED</span><span class="sh">"</span>
-    
+
     <span class="k">def</span> <span class="nf">generate_with_reflection</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="c1"># Check if retrieval is needed
 </span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">self</span><span class="p">.</span><span class="nf">is_retrieval_needed</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-        
+
         <span class="c1"># Retrieve documents
 </span>        <span class="n">docs</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">retriever</span><span class="p">.</span><span class="nf">retrieve</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-        
+
         <span class="c1"># Filter by relevance
 </span>        <span class="n">relevant_docs</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">doc</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">docs</span>
             <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="nf">assess_relevance</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">doc</span><span class="p">[</span><span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mf">0.7</span>
         <span class="p">]</span>
-        
+
         <span class="k">if</span> <span class="ow">not</span> <span class="n">relevant_docs</span><span class="p">:</span>
             <span class="k">return</span> <span class="sh">"</span><span class="s">Insufficient information to answer the question.</span><span class="sh">"</span>
-        
+
         <span class="c1"># Generate answer
 </span>        <span class="n">context</span> <span class="o">=</span> <span class="sh">"</span><span class="se">\n\n</span><span class="sh">"</span><span class="p">.</span><span class="nf">join</span><span class="p">([</span><span class="n">d</span><span class="p">[</span><span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">relevant_docs</span><span class="p">])</span>
         <span class="n">answer</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Context: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="se">\n\n</span><span class="s">Question: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        
+
         <span class="c1"># Verify answer
 </span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">self</span><span class="p">.</span><span class="nf">verify_answer</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">answer</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
             <span class="c1"># Retry with different approach
@@ -141,7 +141,7 @@
                 <span class="sa">f</span><span class="sh">"</span><span class="s">Based strictly on this context, answer the question.</span><span class="se">\n</span><span class="sh">"</span>
                 <span class="sa">f</span><span class="sh">"</span><span class="s">Context: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="se">\n</span><span class="s">Question: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="sh">"</span>
             <span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="n">answer</span>
 </code></pre></div></div> <h2 id="contextual-compression">Contextual Compression</h2> <p>Reduce retrieved context to only relevant information:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelForSeq2SeqLM</span>
 
@@ -149,28 +149,28 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sh">"</span><span class="s">facebook/bart-large-cnn</span><span class="sh">"</span><span class="p">):</span>
         <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
         <span class="n">self</span><span class="p">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSeq2SeqLM</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
-    
+
     <span class="k">def</span> <span class="nf">compress_context</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">documents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sh">"""</span><span class="s">Extract only query-relevant information</span><span class="sh">"""</span>
         <span class="n">compressed_docs</span> <span class="o">=</span> <span class="p">[]</span>
-        
+
         <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">:</span>
             <span class="c1"># Create extraction prompt
 </span>            <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"""</span><span class="s">
             Extract only the information relevant to answering this question:
             Question: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s">
-            
+
             Document: </span><span class="si">{</span><span class="n">doc</span><span class="si">}</span><span class="s">
-            
+
             Relevant information:
             </span><span class="sh">"""</span>
-            
+
             <span class="n">inputs</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">tokenizer</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="sh">"</span><span class="s">pt</span><span class="sh">"</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
             <span class="n">outputs</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
             <span class="n">compressed</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-            
+
             <span class="n">compressed_docs</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">compressed</span><span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="sh">"</span><span class="se">\n\n</span><span class="sh">"</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">compressed_docs</span><span class="p">)</span>
 
 <span class="c1"># Usage
@@ -179,13 +179,13 @@
 <span class="k">def</span> <span class="nf">rag_with_compression</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="c1"># Retrieve documents
 </span>    <span class="n">docs</span> <span class="o">=</span> <span class="n">retriever</span><span class="p">.</span><span class="nf">retrieve</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    
+
     <span class="c1"># Compress context
 </span>    <span class="n">compressed_context</span> <span class="o">=</span> <span class="n">compressor</span><span class="p">.</span><span class="nf">compress_context</span><span class="p">(</span>
         <span class="n">query</span><span class="p">,</span>
         <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">]</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># Generate with compressed context
 </span>    <span class="n">answer</span> <span class="o">=</span> <span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Context: </span><span class="si">{</span><span class="n">compressed_context</span><span class="si">}</span><span class="se">\n\n</span><span class="s">Question: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">answer</span>
@@ -196,31 +196,31 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">documents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">embedding_model</span><span class="p">):</span>
         <span class="n">self</span><span class="p">.</span><span class="n">documents</span> <span class="o">=</span> <span class="n">documents</span>
         <span class="n">self</span><span class="p">.</span><span class="n">embedding_model</span> <span class="o">=</span> <span class="n">embedding_model</span>
-        
+
         <span class="c1"># BM25 index
 </span>        <span class="n">tokenized_docs</span> <span class="o">=</span> <span class="p">[</span><span class="n">doc</span><span class="p">.</span><span class="nf">lower</span><span class="p">().</span><span class="nf">split</span><span class="p">()</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">]</span>
         <span class="n">self</span><span class="p">.</span><span class="n">bm25</span> <span class="o">=</span> <span class="nc">BM25Okapi</span><span class="p">(</span><span class="n">tokenized_docs</span><span class="p">)</span>
-        
+
         <span class="c1"># Dense index
 </span>        <span class="n">self</span><span class="p">.</span><span class="n">doc_embeddings</span> <span class="o">=</span> <span class="n">embedding_model</span><span class="p">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
-    
+
     <span class="k">def</span> <span class="nf">retrieve</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">):</span>
         <span class="c1"># BM25 scores
 </span>        <span class="n">tokenized_query</span> <span class="o">=</span> <span class="n">query</span><span class="p">.</span><span class="nf">lower</span><span class="p">().</span><span class="nf">split</span><span class="p">()</span>
         <span class="n">bm25_scores</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">bm25</span><span class="p">.</span><span class="nf">get_scores</span><span class="p">(</span><span class="n">tokenized_query</span><span class="p">)</span>
         <span class="n">bm25_scores</span> <span class="o">=</span> <span class="p">(</span><span class="n">bm25_scores</span> <span class="o">-</span> <span class="n">bm25_scores</span><span class="p">.</span><span class="nf">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">bm25_scores</span><span class="p">.</span><span class="nf">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">bm25_scores</span><span class="p">.</span><span class="nf">min</span><span class="p">())</span>
-        
+
         <span class="c1"># Dense retrieval scores
 </span>        <span class="n">query_embedding</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">embedding_model</span><span class="p">.</span><span class="nf">encode</span><span class="p">([</span><span class="n">query</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">dense_scores</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">doc_embeddings</span><span class="p">,</span> <span class="n">query_embedding</span><span class="p">)</span>
         <span class="n">dense_scores</span> <span class="o">=</span> <span class="p">(</span><span class="n">dense_scores</span> <span class="o">-</span> <span class="n">dense_scores</span><span class="p">.</span><span class="nf">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">dense_scores</span><span class="p">.</span><span class="nf">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">dense_scores</span><span class="p">.</span><span class="nf">min</span><span class="p">())</span>
-        
+
         <span class="c1"># Combine scores
 </span>        <span class="n">hybrid_scores</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">dense_scores</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">bm25_scores</span>
-        
+
         <span class="c1"># Get top-k
 </span>        <span class="n">top_indices</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">argsort</span><span class="p">(</span><span class="n">hybrid_scores</span><span class="p">)[</span><span class="o">-</span><span class="n">k</span><span class="p">:][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        
+
         <span class="k">return</span> <span class="p">[</span>
             <span class="p">{</span>
                 <span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="n">documents</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
@@ -235,18 +235,18 @@
 <span class="k">class</span> <span class="nc">ReRanker</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sh">"</span><span class="s">cross-encoder/ms-marco-MiniLM-L-6-v2</span><span class="sh">"</span><span class="p">):</span>
         <span class="n">self</span><span class="p">.</span><span class="n">model</span> <span class="o">=</span> <span class="nc">CrossEncoder</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
-    
+
     <span class="k">def</span> <span class="nf">rerank</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">documents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">],</span> <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
         <span class="c1"># Prepare pairs
 </span>        <span class="n">pairs</span> <span class="o">=</span> <span class="p">[[</span><span class="n">query</span><span class="p">,</span> <span class="n">doc</span><span class="p">[</span><span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">]]</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">]</span>
-        
+
         <span class="c1"># Score with cross-encoder
 </span>        <span class="n">scores</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
-        
+
         <span class="c1"># Add scores and sort
 </span>        <span class="k">for</span> <span class="n">doc</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">scores</span><span class="p">):</span>
             <span class="n">doc</span><span class="p">[</span><span class="sh">'</span><span class="s">rerank_score</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
-        
+
         <span class="n">reranked</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="sh">'</span><span class="s">rerank_score</span><span class="sh">'</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">reranked</span><span class="p">[:</span><span class="n">top_k</span><span class="p">]</span>
 
@@ -254,15 +254,15 @@
 </span><span class="k">def</span> <span class="nf">advanced_rag</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="c1"># Initial retrieval (cast wide net)
 </span>    <span class="n">initial_docs</span> <span class="o">=</span> <span class="n">retriever</span><span class="p">.</span><span class="nf">retrieve</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-    
+
     <span class="c1"># Re-rank for precision
 </span>    <span class="n">reranker</span> <span class="o">=</span> <span class="nc">ReRanker</span><span class="p">()</span>
     <span class="n">final_docs</span> <span class="o">=</span> <span class="n">reranker</span><span class="p">.</span><span class="nf">rerank</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">initial_docs</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-    
+
     <span class="c1"># Generate answer
 </span>    <span class="n">context</span> <span class="o">=</span> <span class="sh">"</span><span class="se">\n\n</span><span class="sh">"</span><span class="p">.</span><span class="nf">join</span><span class="p">([</span><span class="n">d</span><span class="p">[</span><span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">final_docs</span><span class="p">])</span>
     <span class="n">answer</span> <span class="o">=</span> <span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Context: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="se">\n\n</span><span class="s">Question: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="p">{</span>
         <span class="sh">'</span><span class="s">answer</span><span class="sh">'</span><span class="p">:</span> <span class="n">answer</span><span class="p">,</span>
         <span class="sh">'</span><span class="s">sources</span><span class="sh">'</span><span class="p">:</span> <span class="n">final_docs</span>
@@ -272,55 +272,55 @@
         <span class="n">self</span><span class="p">.</span><span class="n">llm</span> <span class="o">=</span> <span class="n">llm</span>
         <span class="n">self</span><span class="p">.</span><span class="n">retriever</span> <span class="o">=</span> <span class="n">retriever</span>
         <span class="n">self</span><span class="p">.</span><span class="n">conversation_history</span> <span class="o">=</span> <span class="p">[]</span>
-    
+
     <span class="k">def</span> <span class="nf">rewrite_query</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">current_query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sh">"""</span><span class="s">Rewrite query with conversation context</span><span class="sh">"""</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">self</span><span class="p">.</span><span class="n">conversation_history</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">current_query</span>
-        
+
         <span class="n">history_text</span> <span class="o">=</span> <span class="sh">"</span><span class="se">\n</span><span class="sh">"</span><span class="p">.</span><span class="nf">join</span><span class="p">([</span>
             <span class="sa">f</span><span class="sh">"</span><span class="s">Q: </span><span class="si">{</span><span class="n">h</span><span class="p">[</span><span class="sh">'</span><span class="s">query</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s">A: </span><span class="si">{</span><span class="n">h</span><span class="p">[</span><span class="sh">'</span><span class="s">answer</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span>
             <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">conversation_history</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span>  <span class="c1"># Last 3 turns
 </span>        <span class="p">])</span>
-        
+
         <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"""</span><span class="s">
         Given this conversation history, rewrite the current question to be standalone:
-        
+
         History:
         </span><span class="si">{</span><span class="n">history_text</span><span class="si">}</span><span class="s">
-        
+
         Current question: </span><span class="si">{</span><span class="n">current_query</span><span class="si">}</span><span class="s">
-        
+
         Standalone question:
         </span><span class="sh">"""</span>
-        
+
         <span class="n">standalone_query</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="n">prompt</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">standalone_query</span>
-    
+
     <span class="k">def</span> <span class="nf">answer</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="c1"># Rewrite query with context
 </span>        <span class="n">standalone_query</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">rewrite_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-        
+
         <span class="c1"># Retrieve and generate
 </span>        <span class="n">docs</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">retriever</span><span class="p">.</span><span class="nf">retrieve</span><span class="p">(</span><span class="n">standalone_query</span><span class="p">)</span>
         <span class="n">context</span> <span class="o">=</span> <span class="sh">"</span><span class="se">\n\n</span><span class="sh">"</span><span class="p">.</span><span class="nf">join</span><span class="p">([</span><span class="n">d</span><span class="p">[</span><span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">])</span>
-        
+
         <span class="n">answer</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span>
             <span class="sa">f</span><span class="sh">"</span><span class="s">Context: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="se">\n\n</span><span class="s">Question: </span><span class="si">{</span><span class="n">standalone_query</span><span class="si">}</span><span class="sh">"</span>
         <span class="p">)</span>
-        
+
         <span class="c1"># Update history
 </span>        <span class="n">self</span><span class="p">.</span><span class="n">conversation_history</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
             <span class="sh">'</span><span class="s">query</span><span class="sh">'</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
             <span class="sh">'</span><span class="s">standalone_query</span><span class="sh">'</span><span class="p">:</span> <span class="n">standalone_query</span><span class="p">,</span>
             <span class="sh">'</span><span class="s">answer</span><span class="sh">'</span><span class="p">:</span> <span class="n">answer</span>
         <span class="p">})</span>
-        
+
         <span class="k">return</span> <span class="n">answer</span>
 </code></pre></div></div> <h2 id="monitoring-and-evaluation">Monitoring and Evaluation</h2> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">RAGMonitor</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
         <span class="n">self</span><span class="p">.</span><span class="n">metrics</span> <span class="o">=</span> <span class="p">[]</span>
-    
+
     <span class="k">def</span> <span class="nf">log_retrieval</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">docs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">],</span> <span class="n">answer</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="sh">"""</span><span class="s">Log retrieval for analysis</span><span class="sh">"""</span>
         <span class="n">self</span><span class="p">.</span><span class="n">metrics</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
@@ -330,7 +330,7 @@
             <span class="sh">'</span><span class="s">answer_length</span><span class="sh">'</span><span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">answer</span><span class="p">),</span>
             <span class="sh">'</span><span class="s">timestamp</span><span class="sh">'</span><span class="p">:</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
         <span class="p">})</span>
-    
+
     <span class="k">def</span> <span class="nf">evaluate_faithfulness</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">answer</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sh">"""</span><span class="s">Check if answer is grounded in context</span><span class="sh">"""</span>
         <span class="c1"># Use NLI model or LLM-based evaluation
@@ -342,7 +342,7 @@
         </span><span class="sh">"""</span>
         <span class="n">score</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="n">prompt</span><span class="p">).</span><span class="nf">strip</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">score</span>
-    
+
     <span class="k">def</span> <span class="nf">get_statistics</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
         <span class="sh">"""</span><span class="s">Return performance statistics</span><span class="sh">"""</span>
         <span class="k">return</span> <span class="p">{</span>
@@ -428,19 +428,19 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">model_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">use_gpu</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">True</span><span class="p">):</span>
         <span class="n">providers</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">CUDAExecutionProvider</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">CPUExecutionProvider</span><span class="sh">'</span><span class="p">]</span> \
                     <span class="k">if</span> <span class="n">use_gpu</span> <span class="k">else</span> <span class="p">[</span><span class="sh">'</span><span class="s">CPUExecutionProvider</span><span class="sh">'</span><span class="p">]</span>
-        
+
         <span class="n">self</span><span class="p">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">ort</span><span class="p">.</span><span class="nc">InferenceSession</span><span class="p">(</span>
             <span class="n">model_path</span><span class="p">,</span>
             <span class="n">providers</span><span class="o">=</span><span class="n">providers</span>
         <span class="p">)</span>
-        
+
         <span class="n">self</span><span class="p">.</span><span class="n">input_name</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="nf">get_inputs</span><span class="p">()[</span><span class="mi">0</span><span class="p">].</span><span class="n">name</span>
         <span class="n">self</span><span class="p">.</span><span class="n">output_name</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="nf">get_outputs</span><span class="p">()[</span><span class="mi">0</span><span class="p">].</span><span class="n">name</span>
-    
+
     <span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="c1"># Add preprocessing logic
 </span>        <span class="k">return</span> <span class="n">data</span><span class="p">.</span><span class="nf">astype</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span>
-    
+
     <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="n">processed</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">preprocess</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="n">outputs</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span>
@@ -448,7 +448,7 @@
             <span class="p">{</span><span class="n">self</span><span class="p">.</span><span class="n">input_name</span><span class="p">:</span> <span class="n">processed</span><span class="p">}</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    
+
     <span class="k">def</span> <span class="nf">batch_predict</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">batch_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">32</span><span class="p">):</span>
         <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">batch_data</span><span class="p">),</span> <span class="n">batch_size</span><span class="p">):</span>
@@ -472,7 +472,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">calibration_data</span><span class="p">):</span>
         <span class="n">self</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">calibration_data</span>
         <span class="n">self</span><span class="p">.</span><span class="n">iterator</span> <span class="o">=</span> <span class="nf">iter</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">data</span><span class="p">)</span>
-    
+
     <span class="k">def</span> <span class="nf">get_next</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="nf">next</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">iterator</span><span class="p">)</span>
@@ -496,16 +496,16 @@
     <span class="c1"># Warmup
 </span>    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
         <span class="n">session</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">input_data</span><span class="p">)</span>
-    
+
     <span class="c1"># Benchmark
 </span>    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">num_runs</span><span class="p">):</span>
         <span class="n">session</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">input_data</span><span class="p">)</span>
     <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
-    
+
     <span class="n">avg_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_runs</span>
     <span class="n">throughput</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">avg_time</span>
-    
+
     <span class="k">return</span> <span class="p">{</span>
         <span class="sh">'</span><span class="s">avg_latency_ms</span><span class="sh">'</span><span class="p">:</span> <span class="n">avg_time</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span>
         <span class="sh">'</span><span class="s">throughput_fps</span><span class="sh">'</span><span class="p">:</span> <span class="n">throughput</span>
@@ -562,45 +562,45 @@
 </code></pre></div></div> <h2 id="best-practices">Best Practices</h2> <ol> <li><strong>Version Control</strong>: Track ONNX opset versions</li> <li><strong>Validation</strong>: Compare ONNX outputs with original model</li> <li><strong>Profiling</strong>: Use ONNX Runtime profiling tools</li> <li><strong>Hardware-Specific Optimization</strong>: Leverage execution providers</li> <li><strong>Model Versioning</strong>: Maintain model registry</li> </ol> <h2 id="conclusion">Conclusion</h2> <p>ONNX provides a robust framework for deploying ML models efficiently across diverse platforms. Its optimization capabilities and framework interoperability make it essential for production ML systems.</p> <hr/> <p><em>For more on ML deployment and optimization, follow my research on efficient NLP systems.</em></p>]]></content><author><name></name></author><category term="research"/><category term="machine-learning"/><category term="deployment"/><category term="optimization"/><category term="ONNX"/><summary type="html"><![CDATA[Leveraging ONNX Runtime for efficient ML model deployment across platforms]]></summary></entry><entry><title type="html">Understanding Retrieval-Augmented Generation (RAG)</title><link href="https://saadat-r-ahmed.github.io/blog/2024/rag-fundamentals/" rel="alternate" type="text/html" title="Understanding Retrieval-Augmented Generation (RAG)"/><published>2024-11-15T10:00:00+00:00</published><updated>2024-11-15T10:00:00+00:00</updated><id>https://saadat-r-ahmed.github.io/blog/2024/rag-fundamentals</id><content type="html" xml:base="https://saadat-r-ahmed.github.io/blog/2024/rag-fundamentals/"><![CDATA[<h2 id="introduction-to-rag">Introduction to RAG</h2> <p>Retrieval-Augmented Generation (RAG) has emerged as a powerful paradigm for enhancing large language models (LLMs) with external knowledge. Unlike traditional language models that rely solely on their parametric knowledge, RAG systems combine the generative capabilities of LLMs with the precision of information retrieval.</p> <h2 id="core-components">Core Components</h2> <h3 id="1-retrieval-system">1. Retrieval System</h3> <p>The retrieval component typically consists of:</p> <ul> <li><strong>Vector Database</strong>: Stores document embeddings (e.g., FAISS, Pinecone, Weaviate)</li> <li><strong>Embedding Model</strong>: Converts text to dense vectors (e.g., sentence-transformers, OpenAI embeddings)</li> <li><strong>Similarity Search</strong>: Finds relevant documents using cosine similarity or other metrics</li> </ul> <h3 id="2-generation-system">2. Generation System</h3> <p>The generation component leverages:</p> <ul> <li><strong>Large Language Models</strong>: GPT-4, Claude, Llama, or other LLMs</li> <li><strong>Context Integration</strong>: Combines retrieved documents with user queries</li> <li><strong>Prompt Engineering</strong>: Structures information for optimal generation</li> </ul> <h2 id="rag-architecture">RAG Architecture</h2> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">rag_pipeline</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
     <span class="c1"># Step 1: Encode query
 </span>    <span class="n">query_embedding</span> <span class="o">=</span> <span class="n">embedding_model</span><span class="p">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-    
+
     <span class="c1"># Step 2: Retrieve relevant documents
 </span>    <span class="n">relevant_docs</span> <span class="o">=</span> <span class="n">vector_db</span><span class="p">.</span><span class="nf">similarity_search</span><span class="p">(</span>
-        <span class="n">query_embedding</span><span class="p">,</span> 
+        <span class="n">query_embedding</span><span class="p">,</span>
         <span class="n">k</span><span class="o">=</span><span class="n">k</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># Step 3: Construct context
 </span>    <span class="n">context</span> <span class="o">=</span> <span class="sh">"</span><span class="se">\n</span><span class="sh">"</span><span class="p">.</span><span class="nf">join</span><span class="p">([</span><span class="n">doc</span><span class="p">.</span><span class="n">content</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">relevant_docs</span><span class="p">])</span>
-    
+
     <span class="c1"># Step 4: Generate response
 </span>    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">Context: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="se">\n\n</span><span class="s">Question: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="se">\n\n</span><span class="s">Answer:</span><span class="sh">"</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">llm</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">response</span>
 </code></pre></div></div> <h2 id="advantages-of-rag">Advantages of RAG</h2> <ol> <li><strong>Up-to-date Information</strong>: Access to current data without retraining</li> <li><strong>Reduced Hallucinations</strong>: Grounded responses based on retrieved facts</li> <li><strong>Transparency</strong>: Ability to cite sources and verify information</li> <li><strong>Domain Adaptation</strong>: Easy customization for specific domains</li> <li><strong>Cost-Effective</strong>: No need for expensive fine-tuning</li> </ol> <h2 id="challenges-and-considerations">Challenges and Considerations</h2> <h3 id="retrieval-quality">Retrieval Quality</h3> <ul> <li><strong>Chunk Size</strong>: Balancing context and precision</li> <li><strong>Embedding Quality</strong>: Choosing appropriate embedding models</li> <li><strong>Indexing Strategy</strong>: Hierarchical vs. flat indexing</li> </ul> <h3 id="generation-quality">Generation Quality</h3> <ul> <li><strong>Context Window</strong>: Managing token limits</li> <li><strong>Prompt Design</strong>: Effective instruction formatting</li> <li><strong>Hallucination Control</strong>: Ensuring factual accuracy</li> </ul> <h2 id="advanced-rag-techniques">Advanced RAG Techniques</h2> <h3 id="multi-query-rag">Multi-Query RAG</h3> <p>Generate multiple query variations to improve retrieval coverage:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">multi_query_rag</span><span class="p">(</span><span class="n">original_query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="c1"># Generate query variations
 </span>    <span class="n">variations</span> <span class="o">=</span> <span class="n">llm</span><span class="p">.</span><span class="nf">generate_variations</span><span class="p">(</span><span class="n">original_query</span><span class="p">)</span>
-    
+
     <span class="c1"># Retrieve for each variation
 </span>    <span class="n">all_docs</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">variations</span><span class="p">:</span>
         <span class="n">docs</span> <span class="o">=</span> <span class="nf">retrieve</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
         <span class="n">all_docs</span><span class="p">.</span><span class="nf">extend</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
-    
+
     <span class="c1"># Deduplicate and rank
 </span>    <span class="n">unique_docs</span> <span class="o">=</span> <span class="nf">deduplicate_and_rank</span><span class="p">(</span><span class="n">all_docs</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="nf">generate_response</span><span class="p">(</span><span class="n">original_query</span><span class="p">,</span> <span class="n">unique_docs</span><span class="p">)</span>
 </code></pre></div></div> <h3 id="hybrid-search">Hybrid Search</h3> <p>Combine dense and sparse retrieval for better results:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">hybrid_search</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">):</span>
     <span class="c1"># Dense retrieval (semantic)
 </span>    <span class="n">dense_results</span> <span class="o">=</span> <span class="nf">vector_search</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-    
+
     <span class="c1"># Sparse retrieval (keyword-based, e.g., BM25)
 </span>    <span class="n">sparse_results</span> <span class="o">=</span> <span class="nf">bm25_search</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-    
+
     <span class="c1"># Combine scores
 </span>    <span class="n">combined</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">dense_results</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">sparse_results</span>
-    
+
     <span class="k">return</span> <span class="n">combined</span>
 </code></pre></div></div> <h2 id="evaluation-metrics">Evaluation Metrics</h2> <p>Key metrics for RAG systems:</p> <ul> <li><strong>Retrieval Metrics</strong>: Precision@K, Recall@K, MRR</li> <li><strong>Generation Metrics</strong>: BLEU, ROUGE, BERTScore</li> <li><strong>End-to-End</strong>: Faithfulness, Answer Relevance, Context Relevance</li> </ul> <h2 id="applications">Applications</h2> <p>RAG is particularly effective for:</p> <ul> <li>Question Answering Systems</li> <li>Customer Support Chatbots</li> <li>Research Assistants</li> <li>Document Analysis Tools</li> <li>Knowledge Management Systems</li> </ul> <h2 id="future-directions">Future Directions</h2> <p>Emerging trends in RAG research:</p> <ul> <li><strong>Agentic RAG</strong>: Autonomous decision-making in retrieval</li> <li><strong>Multi-Modal RAG</strong>: Incorporating images, tables, and graphs</li> <li><strong>Self-RAG</strong>: Models that critique and refine their own retrievals</li> <li><strong>Adaptive Retrieval</strong>: Dynamic adjustment of retrieval strategies</li> </ul> <h2 id="conclusion">Conclusion</h2> <p>RAG represents a significant advancement in making LLMs more reliable and factual. As the field evolves, we can expect more sophisticated retrieval strategies and better integration between retrieval and generation components.</p> <hr/> <p><em>This post is part of a series on modern NLP techniques. Stay tuned for more insights on machine learning and AI applications.</em></p>]]></content><author><name></name></author><category term="research"/><category term="NLP"/><category term="RAG"/><category term="machine-learning"/><summary type="html"><![CDATA[A comprehensive overview of RAG systems and their applications in modern NLP]]></summary></entry><entry><title type="html">Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra</title><link href="https://saadat-r-ahmed.github.io/blog/2024/google-gemini-updates-flash-15-gemma-2-and-project-astra/" rel="alternate" type="text/html" title="Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra"/><published>2024-05-14T00:00:00+00:00</published><updated>2024-05-14T00:00:00+00:00</updated><id>https://saadat-r-ahmed.github.io/blog/2024/google-gemini-updates-flash-15-gemma-2-and-project-astra</id><content type="html" xml:base="https://saadat-r-ahmed.github.io/blog/2024/google-gemini-updates-flash-15-gemma-2-and-project-astra/"><![CDATA[<p>May 14, 2024 We’re introducing a series of updates across the Gemini family of models, including the new 1.5 Flash, our lightweight model for speed and efficiency, and Project Astra, our vision for the future of AI assistants. In December, we launched our first natively multimodal model Gemini 1.0 in three sizes: Ultra, Pro and Nano. Just a few months later we released 1.5 Pro, with enhanced performance and a breakthrough long context window of 1 million tokens.Developers and enterprise customers have been putting 1.5 Pro to use in incredible ways and finding its long context window, multimodal reasoning capabilities and impressive overall performance incredibly useful.We know from user feedback that some applications need lower latency and a lower cost to serve. This inspired us to keep innovating, so today, we’re introducing Gemini 1.5 Flash: a model that’s lighter-weight than 1.5 Pro, and designed to be fast and efficient to serve at scale.Both 1.5 Pro and 1.5 Flash are available in public preview with a 1 million token context window in Google AI Studio and Vertex AI. And now, 1.5 Pro is also available with a 2 million token context window via waitlist to developers using the API and to Google Cloud customers.We’re also introducing updates across the Gemini family of models, announcing our next generation of open models, Gemma 2, and sharing progress on the future of AI assistants, with Project Astra.Context lengths of leading foundation models compared with Gemini 1.5’s 2 million token capability1.5 Flash is the newest addition to the Gemini model family and the fastest Gemini model served in the API. It’s optimized for high-volume, high-frequency tasks at scale, is more cost-efficient to serve and features our breakthrough long context window.While it’s a lighter weight model than 1.5 Pro, it’s highly capable of multimodal reasoning across vast amounts of information and delivers impressive quality for its size.The new Gemini 1.5 Flash model is optimized for speed and efficiency, is highly capable of multimodal reasoning and features our breakthrough long context window.1.5 Flash excels at summarization, chat applications, image and video captioning, data extraction from long documents and tables, and more. This is because it’s been trained by 1.5 Pro through a process called “distillation,” where the most essential knowledge and skills from a larger model are transferred to a smaller, more efficient model.Read more about 1.5 Flash in our updated Gemini 1.5 technical report, on the Gemini technology page, and learn about 1.5 Flash’s availability and pricing.Over the last few months, we’ve significantly improved 1.5 Pro, our best model for general performance across a wide range of tasks.Beyond extending its context window to 2 million tokens, we’ve enhanced its code generation, logical reasoning and planning, multi-turn conversation, and audio and image understanding through data and algorithmic advances. We see strong improvements on public and internal benchmarks for each of these tasks.1.5 Pro can now follow increasingly complex and nuanced instructions, including ones that specify product-level behavior involving role, format and style. We’ve improved control over the model’s responses for specific use cases, like crafting the persona and response style of a chat agent or automating workflows through multiple function calls. And we’ve enabled users to steer model behavior by setting system instructions.We added audio understanding in the Gemini API and Google AI Studio, so 1.5 Pro can now reason across image and audio for videos uploaded in Google AI Studio. And we’re now integrating 1.5 Pro into Google products, including Gemini Advanced and in Workspace apps.Read more about 1.5 Pro in our updated Gemini 1.5 technical report and on the Gemini technology page.Gemini Nano is expanding beyond text-only inputs to include images as well. Starting with Pixel, applications using Gemini Nano with Multimodality will be able to understand the world the way people do — not just through text, but also through sight, sound and spoken language.Read more about Gemini 1.0 Nano on Android.Today, we’re also sharing a series of updates to Gemma, our family of open models built from the same research and technology used to create the Gemini models.We’re announcing Gemma 2, our next generation of open models for responsible AI innovation. Gemma 2 has a new architecture designed for breakthrough performance and efficiency, and will be available in new sizes.The Gemma family is also expanding with PaliGemma, our first vision-language model inspired by PaLI-3. And we’ve upgraded our Responsible Generative AI Toolkit with LLM Comparator for evaluating the quality of model responses.Read more on the Developer blog.As part of Google DeepMind’s mission to build AI responsibly to benefit humanity, we’ve always wanted to develop universal AI agents that can be helpful in everyday life. That’s why today, we’re sharing our progress in building the future of AI assistants with Project Astra (advanced seeing and talking responsive agent).To be truly useful, an agent needs to understand and respond to the complex and dynamic world just like people do — and take in and remember what it sees and hears to understand context and take action. It also needs to be proactive, teachable and personal, so users can talk to it naturally and without lag or delay.While we’ve made incredible progress developing AI systems that can understand multimodal information, getting response time down to something conversational is a difficult engineering challenge. Over the past few years, we’ve been working to improve how our models perceive, reason and converse to make the pace and quality of interaction feel more natural.Building on Gemini, we’ve developed prototype agents that can process information faster by continuously encoding video frames, combining the video and speech input into a timeline of events, and caching this information for efficient recall.By leveraging our leading speech models, we also enhanced how they sound, giving the agents a wider range of intonations. These agents can better understand the context they’re being used in, and respond quickly, in conversation.With technology like this, it’s easy to envision a future where people could have an expert AI assistant by their side, through a phone or glasses. And some of these capabilities are coming to Google products, like the Gemini app and web experience, later this year.We’ve made incredible progress so far with our family of Gemini models, and we’re always striving to advance the state-of-the-art even further. By investing in a relentless production line of innovation, we’re able to explore new ideas at the frontier, while also unlocking the possibility of new and exciting Gemini use cases.Learn more about Gemini and its capabilities. Your information will be used in accordance with Google’s privacy policy.</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      Done. Just one step more.
     
