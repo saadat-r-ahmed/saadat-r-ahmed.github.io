@@ -16,6 +16,7 @@ Retrieval-Augmented Generation (RAG) has emerged as a powerful paradigm for enha
 ### 1. Retrieval System
 
 The retrieval component typically consists of:
+
 - **Vector Database**: Stores document embeddings (e.g., FAISS, Pinecone, Weaviate)
 - **Embedding Model**: Converts text to dense vectors (e.g., sentence-transformers, OpenAI embeddings)
 - **Similarity Search**: Finds relevant documents using cosine similarity or other metrics
@@ -23,6 +24,7 @@ The retrieval component typically consists of:
 ### 2. Generation System
 
 The generation component leverages:
+
 - **Large Language Models**: GPT-4, Claude, Llama, or other LLMs
 - **Context Integration**: Combines retrieved documents with user queries
 - **Prompt Engineering**: Structures information for optimal generation
@@ -33,20 +35,20 @@ The generation component leverages:
 def rag_pipeline(query: str, k: int = 5):
     # Step 1: Encode query
     query_embedding = embedding_model.encode(query)
-    
+
     # Step 2: Retrieve relevant documents
     relevant_docs = vector_db.similarity_search(
-        query_embedding, 
+        query_embedding,
         k=k
     )
-    
+
     # Step 3: Construct context
     context = "\n".join([doc.content for doc in relevant_docs])
-    
+
     # Step 4: Generate response
     prompt = f"Context: {context}\n\nQuestion: {query}\n\nAnswer:"
     response = llm.generate(prompt)
-    
+
     return response
 ```
 
@@ -61,11 +63,13 @@ def rag_pipeline(query: str, k: int = 5):
 ## Challenges and Considerations
 
 ### Retrieval Quality
+
 - **Chunk Size**: Balancing context and precision
 - **Embedding Quality**: Choosing appropriate embedding models
 - **Indexing Strategy**: Hierarchical vs. flat indexing
 
 ### Generation Quality
+
 - **Context Window**: Managing token limits
 - **Prompt Design**: Effective instruction formatting
 - **Hallucination Control**: Ensuring factual accuracy
@@ -73,45 +77,48 @@ def rag_pipeline(query: str, k: int = 5):
 ## Advanced RAG Techniques
 
 ### Multi-Query RAG
+
 Generate multiple query variations to improve retrieval coverage:
 
 ```python
 def multi_query_rag(original_query: str):
     # Generate query variations
     variations = llm.generate_variations(original_query)
-    
+
     # Retrieve for each variation
     all_docs = []
     for query in variations:
         docs = retrieve(query)
         all_docs.extend(docs)
-    
+
     # Deduplicate and rank
     unique_docs = deduplicate_and_rank(all_docs)
-    
+
     return generate_response(original_query, unique_docs)
 ```
 
 ### Hybrid Search
+
 Combine dense and sparse retrieval for better results:
 
 ```python
 def hybrid_search(query: str, alpha: float = 0.5):
     # Dense retrieval (semantic)
     dense_results = vector_search(query)
-    
+
     # Sparse retrieval (keyword-based, e.g., BM25)
     sparse_results = bm25_search(query)
-    
+
     # Combine scores
     combined = alpha * dense_results + (1 - alpha) * sparse_results
-    
+
     return combined
 ```
 
 ## Evaluation Metrics
 
 Key metrics for RAG systems:
+
 - **Retrieval Metrics**: Precision@K, Recall@K, MRR
 - **Generation Metrics**: BLEU, ROUGE, BERTScore
 - **End-to-End**: Faithfulness, Answer Relevance, Context Relevance
@@ -119,6 +126,7 @@ Key metrics for RAG systems:
 ## Applications
 
 RAG is particularly effective for:
+
 - Question Answering Systems
 - Customer Support Chatbots
 - Research Assistants
@@ -128,6 +136,7 @@ RAG is particularly effective for:
 ## Future Directions
 
 Emerging trends in RAG research:
+
 - **Agentic RAG**: Autonomous decision-making in retrieval
 - **Multi-Modal RAG**: Incorporating images, tables, and graphs
 - **Self-RAG**: Models that critique and refine their own retrievals
@@ -139,4 +148,4 @@ RAG represents a significant advancement in making LLMs more reliable and factua
 
 ---
 
-*This post is part of a series on modern NLP techniques. Stay tuned for more insights on machine learning and AI applications.*
+_This post is part of a series on modern NLP techniques. Stay tuned for more insights on machine learning and AI applications._

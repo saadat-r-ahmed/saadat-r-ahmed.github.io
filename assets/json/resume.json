@@ -44,7 +44,11 @@
       "startDate": "2024-11-01",
       "endDate": "",
       "summary": "Collaborated with parent company, Lecture Publications Ltd. (largest publication in Bangladesh). Designed RAG based automation solutions for cleaning and curating database.",
-      "highlights": ["Built OCR-based solution, reducing data extraction time by 90%", "Designed Transformer based custom-POS tagger and increased conversion speed by 3x", "Designed student tracking system improving engagement metrics by 23%"]
+      "highlights": [
+        "Built OCR-based solution, reducing data extraction time by 90%",
+        "Designed Transformer based custom-POS tagger and increased conversion speed by 3x",
+        "Designed student tracking system improving engagement metrics by 23%"
+      ]
     },
     {
       "name": "Robi Axiata Ltd.",
@@ -138,58 +142,25 @@
       "name": "Programming Languages",
       "level": "Expert",
       "icon": "fa-solid fa-code",
-      "keywords": [
-        "Python",
-        "Dart",
-        "C",
-        "C++",
-        "WolframScript"
-      ]
+      "keywords": ["Python", "Dart", "C", "C++", "WolframScript"]
     },
     {
       "name": "MLOps Platforms",
       "level": "Advanced",
       "icon": "fa-solid fa-cloud",
-      "keywords": [
-        "AWS",
-        "Docker",
-        "Kubernetes",
-        "Kuberflow",
-        "Amazon Sage Maker",
-        "Paper Space"
-      ]
+      "keywords": ["AWS", "Docker", "Kubernetes", "Kuberflow", "Amazon Sage Maker", "Paper Space"]
     },
     {
       "name": "Machine Learning & AI",
       "level": "Expert",
       "icon": "fa-solid fa-brain",
-      "keywords": [
-        "Scikit-learn",
-        "Transformers",
-        "ONNX",
-        "TextAttack",
-        "nltk",
-        "TensorFlow",
-        "Neural Networks",
-        "RNN",
-        "LSTM",
-        "Transfer Learning"
-      ]
+      "keywords": ["Scikit-learn", "Transformers", "ONNX", "TextAttack", "nltk", "TensorFlow", "Neural Networks", "RNN", "LSTM", "Transfer Learning"]
     },
     {
       "name": "Natural Language Processing",
       "level": "Expert",
       "icon": "fa-solid fa-language",
-      "keywords": [
-        "Langchain",
-        "Langflow",
-        "CreawAI",
-        "GROQ",
-        "MistralAI",
-        "ChromaDB",
-        "Bengali NLP",
-        "Adversarial Attacks"
-      ]
+      "keywords": ["Langchain", "Langflow", "CreawAI", "GROQ", "MistralAI", "ChromaDB", "Bengali NLP", "Adversarial Attacks"]
     }
   ],
   "languages": [
@@ -220,11 +191,7 @@
     {
       "name": "Music",
       "icon": "fa-solid fa-music",
-      "keywords": [
-        "Guitar",
-        "Harmonium",
-        "Musical Expression"
-      ]
+      "keywords": ["Guitar", "Harmonium", "Musical Expression"]
     }
   ],
   "references": [

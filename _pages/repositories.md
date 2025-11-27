@@ -44,4 +44,4 @@ description: Edit the `_data/repositories.yml` and change the `github_users` and
     {% include repository/repo.liquid repository=repo %}
   {% endfor %}
 </div>
-{% endif %}
+{% endif %}b

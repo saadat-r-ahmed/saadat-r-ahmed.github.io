@@ -14,6 +14,7 @@ Open Neural Network Exchange (ONNX) is an open-source format for representing ma
 ## Why ONNX Matters
 
 ### Framework Agnostic
+
 Train in PyTorch, TensorFlow, or scikit-learn, and deploy anywhere:
 
 ```python
@@ -38,7 +39,9 @@ torch.onnx.export(
 ```
 
 ### Performance Optimization
+
 ONNX Runtime provides significant speedups:
+
 - **Graph Optimizations**: Constant folding, operator fusion
 - **Quantization**: INT8/FP16 precision reduction
 - **Hardware Acceleration**: CPU, GPU, NPU support
@@ -125,19 +128,19 @@ class ONNXInferencePipeline:
     def __init__(self, model_path: str, use_gpu: bool = True):
         providers = ['CUDAExecutionProvider', 'CPUExecutionProvider'] \
                     if use_gpu else ['CPUExecutionProvider']
-        
+
         self.session = ort.InferenceSession(
             model_path,
             providers=providers
         )
-        
+
         self.input_name = self.session.get_inputs()[0].name
         self.output_name = self.session.get_outputs()[0].name
-    
+
     def preprocess(self, data):
         # Add preprocessing logic
         return data.astype(np.float32)
-    
+
     def predict(self, data):
         processed = self.preprocess(data)
         outputs = self.session.run(
@@ -145,7 +148,7 @@ class ONNXInferencePipeline:
             {self.input_name: processed}
         )
         return outputs[0]
-    
+
     def batch_predict(self, batch_data, batch_size: int = 32):
         results = []
         for i in range(0, len(batch_data), batch_size):
@@ -181,7 +184,7 @@ class DataReader(CalibrationDataReader):
     def __init__(self, calibration_data):
         self.data = calibration_data
         self.iterator = iter(self.data)
-    
+
     def get_next(self):
         try:
             return next(self.iterator)
@@ -210,16 +213,16 @@ def benchmark_model(session, input_data, num_runs=100):
     # Warmup
     for _ in range(10):
         session.run(None, input_data)
-    
+
     # Benchmark
     start = time.time()
     for _ in range(num_runs):
         session.run(None, input_data)
     end = time.time()
-    
+
     avg_time = (end - start) / num_runs
     throughput = 1.0 / avg_time
-    
+
     return {
         'avg_latency_ms': avg_time * 1000,
         'throughput_fps': throughput
@@ -303,4 +306,4 @@ ONNX provides a robust framework for deploying ML models efficiently across dive
 
 ---
 
-*For more on ML deployment and optimization, follow my research on efficient NLP systems.*
+_For more on ML deployment and optimization, follow my research on efficient NLP systems._

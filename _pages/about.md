@@ -26,7 +26,6 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-
 Saadat Rafid Ahmed is a Lecturer at BRAC University's Department of Computer Science and Engineering and ML Team Lead at Innospace Infotech Ltd. He graduated with a perfect CGPA of 4.00/4.00 from BRAC University.
 
 He teaches AI, NLP, and Numerical Methods to 300+ students and supervises research groups in NLP, ML Ethics, and AI applications. At Innospace, he develops RAG-based automation and OCR solutions, achieving 90% reduction in data extraction time and 23% improvement in engagement metrics.
