@@ -2,11 +2,20 @@
 layout: page
 permalink: /teaching/
 title: teaching
-description: Materials for courses you taught. Replace this text with your description.
+description: Courses I teach at BRAC University, Department of Computer Science and Engineering.
 nav: true
 nav_order: 6
 ---
 
-For now, this page is assumed to be a static description of your courses. You can convert it to a collection similar to `_projects/` so that you can have a dedicated page for each course.
+I am currently teaching three courses at BRAC University, engaging with through theory and lab sessions.
 
-Organize your courses by years, topics, or universities, however you like!
+## Current Courses
+
+### [CSE330 - Numerical Methods](/teaching/cse330/)
+Mathematical foundations and computational techniques for solving numerical problems in computer science and engineering.
+
+### [CSE422 - Artificial Intelligence](/teaching/cse422/)
+Introduction to artificial intelligence concepts, algorithms, and applications including search, knowledge representation, and machine learning.
+
+### [CSE440 - Natural Language Processing II](/teaching/cse440/)
+Advanced topics in natural language processing, focusing on modern techniques and applications in computational linguistics.

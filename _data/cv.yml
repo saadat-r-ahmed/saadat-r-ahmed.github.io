@@ -2,96 +2,145 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
+      value: Saadat Rafid Ahmed
+    - name: Email
+      value: saadat.r.ahmed@gmail.com
+    - name: Phone
+      value: "Tel: +88 09638464646 Ext 1971"
     - name: Languages
-      value: English, German
+      value: Bengali (Native), English (Fluent)
+    - name: Location
+      value: Dhaka, Bangladesh
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: Bachelor of Science in Computer Science and Engineering
+      institution: BRAC University, Dhaka, Bangladesh
+      year: 2020 - 2023
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
+        - CGPA: 4.00 out of 4.00
+        - 100% merit-based scholarship recipient
+        - Appeared in Vice-Chancellor's Award 7 times
+        - title: Undergraduate Thesis
           contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
-      description:
-        - Description 1.
-        - Description 2.
+            - "destroR: Attacking Transfer Models with Obfuscous Examples to Discard Perplexity"
+            - Supervisor: Dr. Farig Yousuf Sadeque
+            - First author paper under review
+            - Pioneered Bengali adversarial attacks achieving 18-40% F1 score decrease
 
 - title: Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Lecturer
+      institution: BRAC University, Department of Computer Science and Engineering
+      year: May 2024 - Present
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
+        - Designed Course Materials and Course Outline for CSE440: Natural Language Processing II - Labs
+        - Instructed AI, Numerical Methods, NLP, and Discrete Mathematics to 300+ students per semester
+        - Supervised 6 undergrad research groups focusing on NLP, ML Bias & Ethics, RL and AI in Health & Education
+        - Designed Polynomial Interpolation Lab and Neural Network Lab
+    - title: ML Team Lead
+      institution: Innospace Infotech Ltd.
+      year: Nov 2024 - Present
+      description:
+        - Collaborated with parent company, Lecture Publications Ltd. (largest publication in Bangladesh)
+        - Designed RAG based automation solutions for cleaning and curating database
+        - Built OCR-based solution, reducing data extraction time by 90%
+        - Designed Transformer based custom-POS tagger and increased conversion speed by 3x
+        - Designed student tracking system improving engagement metrics by 23% for Britto App
+    - title: Data Scientist
+      institution: Robi Axiata Ltd.
+      year: Mar 2024 - May 2024
+      description:
+        - Integrating Generative AI in customer and internal-facing interfaces
+        - Implemented AI pipelines on 47M users' transnational data (170 TB)
+        - Designed user-base isolating model for offer-suggesting hierarchical model
+    - title: Undergraduate Teaching Assistant
+      institution: BRAC University
+      year: Oct 2022 - Dec 2023
+      description:
+        - Assisted in conducting laboratory sessions under guidance of lecturers and professors
+        - Organized and led study groups to enhance students' understanding
+        - title: Courses Assisted
           contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
-      description:
-        - Description 1.
-        - Description 2.
+            - CSE220 - Data Structures
+            - MAT215 - Mathematics for Machine Learning & Signal Processing
+            - PHY112 - Principles of Physics II
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
-      description:
-
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
-
-- title: Open Source Projects
+- title: Personal Projects
   type: time_table
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - title: destroR - Adversarial Attacks for Bengali NLP
+      year: 2022-2023
+      description: Undergraduate thesis pioneering Bengali adversarial attacks. Devised three potent attack strategies achieving 18-40% F1 score decrease.
+    - title: SemEval 23 Task 10 - EDOS
+      year: 2023
+      description: Ranked top 12 worldwide in Explainable Detection of Online Sexism with statistical approach achieving Micros F1 Score of 53.47%.
+    - title: BSenti - Bangla Sentiment Classification Library
+      year: 2022-2023
+      description: Python library generalizing Bangla Sentiment Classification Datasets with comparative analysis of statistical and deep-learning models.
 
 - title: Honors and Awards
   type: time_table
   contents:
-    - year: 1921
+    - year: 2020-2023
       items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
+        - 100% merit-based scholarship at BRAC University
+        - Vice-Chancellor's Award (7 times)
+    - year: 2023
       items:
-        - Max Planck Medal
+        - SemEval 23 Task 10: Ranked top 12 worldwide in EDOS
 
-- title: Academic Interests
+- title: Research Interests
   type: nested_list
   contents:
-    - title: Topic 1.
+    - title: Natural Language Processing
       items:
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
+        - Bengali language processing and low-resource NLP
+        - Adversarial attacks and adversarial training
+        - Sentiment analysis and text classification
+    - title: Machine Learning
       items:
-        - Description 1.
-        - Description 2.
+        - Machine Learning Bias & Ethics
+        - Reinforcement Learning
+        - Transfer Learning and model robustness
+    - title: AI Applications
+      items:
+        - AI in Health & Education
+        - RAG-based automation systems
+        - OCR and document processing
+
+- title: Technical Skills
+  type: nested_list
+  contents:
+    - title: Programming Languages
+      items:
+        - Python, Dart, C, C++, WolframScript
+    - title: MLOps Platforms
+      items:
+        - AWS, Docker, Kubernetes, Kuberflow, Amazon Sage Maker, Paper Space
+    - title: ML/AI Tools
+      items:
+        - Scikit-learn, Transformers, ONNX, TextAttack, nltk, TensorFlow
+        - Langchain, Langflow, CreawAI, GROQ, MistralAI, ChromaDB
+    - title: Other Tools
+      items:
+        - GraphQL, Flask, Flutter
+
+- title: Co-curricular Activities
+  type: time_table
+  contents:
+    - title: Senior Executive in IT Department
+      institution: BRAC University Adventure Club
+      year: 2021-2023
+      description: Managed IT operations and digital initiatives for the adventure club.
+    - title: Lead Software Research Team Member
+      institution: Robotics and Intelligent Systems (RIS)
+      year: 2021-2023
+      description: Led software research initiatives in robotics and intelligent systems.
 
 - title: Other Interests
   type: list
   contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - <u>Music:</u> Guitar and Harmonium training for musical expression

@@ -1,157 +1,200 @@
 {
   "basics": {
-    "name": "Albert Einstein",
-    "label": "Scientist",
+    "name": "Saadat Rafid Ahmed",
+    "label": "Lecturer & ML Team Lead",
     "image": "",
-    "email": "albert@einstein.de",
-    "phone": "(912) 123-4567",
-    "url": "https://alshedivat.github.io/al-folio/",
-    "summary": "A German-born theoretical physicist, widely ranked among the greatest and most influential scientists of all time",
+    "email": "saadat.r.ahmed@gmail.com",
+    "phone": "Tel: +88 09638464646 Ext 1971",
+    "url": "https://saadat-r-ahmed.github.io",
+    "summary": "Lecturer at Department of Computer Science and Engineering, BRAC University and ML Team Lead at Innospace Infotech Ltd. Research interests in NLP, Machine Learning Bias & Ethics, and AI applications.",
     "location": {
-      "address": "2712 Broadway St",
-      "postalCode": "CA 94115",
-      "city": "San Francisco",
-      "countryCode": "US",
-      "region": "California"
+      "address": "4th floor, Room No # 4J51, Department of Computer Science and Engineering",
+      "postalCode": "",
+      "city": "Dhaka",
+      "countryCode": "BD",
+      "region": "Bangladesh"
     },
     "profiles": [
       {
-        "network": "Twitter",
-        "username": "AlbertEinstein",
-        "url": "https://twitter.com/AlbertEinstein"
+        "network": "GitHub",
+        "username": "saadat-r-ahmed",
+        "url": "https://github.com/saadat-r-ahmed"
+      },
+      {
+        "network": "Notion",
+        "username": "saadat-r-ahmed",
+        "url": "https://saadat-r-ahmed.notion.site"
       }
     ]
   },
   "work": [
     {
-      "name": "Institute for Advanced Study, Princeton University",
-      "position": "Professor of Theoretical Physics",
-      "url": "https://example.com",
-      "startDate": "1933-01-01",
-      "endDate": "1955-01-01",
-      "summary": "Teaching at Palmer Physical Laboratory (now 302 Frist Campus Center). While not a professor at Princeton, I associated with the physics professors and continued to give lectures on campus.",
-      "highlights": ["Relativity"]
+      "name": "BRAC University",
+      "position": "Lecturer",
+      "url": "https://www.bracu.ac.bd/",
+      "startDate": "2024-05-01",
+      "endDate": "",
+      "summary": "Designed Course Materials and Course Outline for CSE440: Natural Language Processing II - Labs. Instructed AI, Numerical Methods, NLP, and Discrete Mathematics to 300+ students per semester.",
+      "highlights": ["Supervised 6 undergrad research groups", "Designed Polynomial Interpolation Lab and Neural Network Lab"]
+    },
+    {
+      "name": "Innospace Infotech Ltd.",
+      "position": "ML Team Lead",
+      "url": "https://innospace.tech/",
+      "startDate": "2024-11-01",
+      "endDate": "",
+      "summary": "Collaborated with parent company, Lecture Publications Ltd. (largest publication in Bangladesh). Designed RAG based automation solutions for cleaning and curating database.",
+      "highlights": ["Built OCR-based solution, reducing data extraction time by 90%", "Designed Transformer based custom-POS tagger and increased conversion speed by 3x", "Designed student tracking system improving engagement metrics by 23%"]
+    },
+    {
+      "name": "Robi Axiata Ltd.",
+      "position": "Data Scientist",
+      "url": "https://www.robi.com.bd/",
+      "startDate": "2024-03-01",
+      "endDate": "2024-05-01",
+      "summary": "Integrating Generative AI in the customer and internal-facing interfaces. Implemented AI pipelines and designed a user-base isolating model on 47M users' transnational data (170 TB).",
+      "highlights": ["Worked with 170 TB of transactional data", "Designed hierarchical model for offer-suggesting"]
+    },
+    {
+      "name": "BRAC University",
+      "position": "Undergraduate Teaching Assistant",
+      "url": "https://www.bracu.ac.bd/",
+      "startDate": "2022-10-01",
+      "endDate": "2023-12-01",
+      "summary": "Assisted in conducting laboratory sessions under the guidance of lecturers and professors. Organized and led study groups to enhance students' understanding.",
+      "highlights": ["CSE220 - Data Structures", "MAT215 - Mathematics for Machine Learning & Signal Processing", "PHY112 - Principles of Physics II"]
     }
   ],
   "volunteer": [
     {
-      "organization": "People's Climate March",
-      "location": "Zurich, Switzerland",
-      "position": "Lead Organizer",
-      "url": "https://example.com",
-      "startDate": "2014-04-01",
-      "endDate": "2015-07-01",
-      "summary": "Lead organizer for the New York City branch of the People's Climate March, the largest climate march in history.",
-      "highlights": ["Awarded 'Climate Hero' award by Greenpeace for my efforts organizing the march.", "Men of the year 2014 by Time magazine"]
+      "organization": "BRAC University Adventure Club",
+      "location": "Dhaka, Bangladesh",
+      "position": "Senior Executive in IT Department",
+      "url": "https://www.bracu.ac.bd/",
+      "startDate": "2021-01-01",
+      "endDate": "2023-12-01",
+      "summary": "Managed IT operations and digital initiatives for the adventure club.",
+      "highlights": ["Led digital transformation initiatives", "Organized tech workshops"]
+    },
+    {
+      "organization": "Robotics and Intelligent Systems (RIS)",
+      "location": "Dhaka, Bangladesh",
+      "position": "Lead Software Research Team Member",
+      "url": "https://www.bracu.ac.bd/",
+      "startDate": "2021-01-01",
+      "endDate": "2023-12-01",
+      "summary": "Led software research initiatives in robotics and intelligent systems.",
+      "highlights": ["Research in AI and robotics", "Software development for intelligent systems"]
     }
   ],
   "education": [
     {
-      "institution": "University of Zurich, Zurich, Switzerland",
-      "location": "Zurich, Switzerland",
-      "url": "https://www.uzh.ch/",
-      "area": "Software Development",
-      "studyType": "PhD",
-      "startDate": "1905-01-01",
-      "endDate": "1905-01-01",
-      "score": "10",
-      "courses": ["Theory of Relativity"]
+      "institution": "BRAC University",
+      "location": "Dhaka, Bangladesh",
+      "url": "https://www.bracu.ac.bd/",
+      "area": "Computer Science and Engineering",
+      "studyType": "Bachelor of Science",
+      "startDate": "2020-01-01",
+      "endDate": "2023-12-01",
+      "score": "4.00 out of 4.00",
+      "courses": ["Data Structures", "Machine Learning", "Natural Language Processing", "Discrete Mathematics"]
     }
   ],
   "awards": [
     {
-      "title": "Nobel Prize in Physics",
-      "date": "1921-11-01",
-      "awarder": "Royal Swedish Academy of Sciences",
-      "url": "https://www.nobelprize.org/prizes/physics/1921/einstein/biographical/",
-      "summary": "The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'"
+      "title": "100% Merit-based Scholarship",
+      "date": "2020-01-01",
+      "awarder": "BRAC University",
+      "url": "https://www.bracu.ac.bd/",
+      "summary": "Full merit-based scholarship for outstanding academic performance throughout undergraduate studies."
+    },
+    {
+      "title": "Vice-Chancellor's Award",
+      "date": "2023-01-01",
+      "awarder": "BRAC University",
+      "url": "https://www.bracu.ac.bd/",
+      "summary": "Appeared in the Vice-Chancellor's Award 7 times for academic excellence."
+    },
+    {
+      "title": "SemEval 23 Task 10: Top 12 Worldwide",
+      "date": "2023-01-01",
+      "awarder": "SemEval Competition",
+      "url": "https://semeval.github.io/",
+      "summary": "Ranked in the top 12 worldwide in Explainable Detection of Online Sexism (EDOS) with Micros F1 Score of 53.47%."
     }
   ],
-  "certificates": [
-    {
-      "name": "Machine Learning",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-location-dot"
-    },
-    {
-      "name": "Quantum Computing",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-tag"
-    },
-    {
-      "name": "Quantum Information",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-envelope"
-    },
-    {
-      "name": "Quantum Cryptography",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-hashtag"
-    },
-    {
-      "name": "Quantum Communication",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-calendar"
-    },
-    {
-      "name": "Quantum Teleportation",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-clipboard-check"
-    }
-  ],
+  "certificates": [],
   "publications": [
     {
-      "name": "Zur Elektrody/namik bewegter Körper",
-      "publisher": "Annalen der Physik",
-      "releaseDate": "1905-06-30",
-      "url": "https://en.wikisource.org/wiki/Translation:On_the_Electrodynamics_of_Moving_Bodies",
-      "summary": "It concerned an interpretation of the Michelson–Morley experiment and the properties of light and time. Special relativity incorporates the principle that the speed of light is the same for all inertial observers regardless of the state of motion of the source."
-    },
-    {
-      "name": "Über einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt",
-      "publisher": "Annalen der Physik",
-      "releaseDate": "1905-03-18",
-      "url": "https://de.wikisource.org/wiki/Über_einen_die_Erzeugung_und_Verwandlung_des_Lichtes_betreffenden_heuristischen_Gesichtspunkt",
-      "summary": "In the second paper, he applied the quantum theory to light to explain the photoelectric effect. In particular, he used the idea of light quanta (photons) to explain experimental results, but stressed the importance of the experimental results. The importance of his work on the photoelectric effect earned him the Nobel Prize in Physics in 1921."
-    },
-    {
-      "name": "Die Grundlage der allgemeinen Relativitätstheorie",
-      "publisher": "Annalen der Physik",
-      "releaseDate": "1916-03-20",
-      "url": "https://de.wikisource.org/wiki/Die_Grundlage_der_allgemeinen_Relativitätstheorie",
-      "summary": "The publication of the theory of general relativity made him internationally famous. He was professor of physics at the universities of Zurich (1909–1911) and Prague (1911–1912), before he returned to ETH Zurich (1912–1914)."
+      "name": "destroR: Attacking Transfer Models with Obfuscous Examples to Discard Perplexity",
+      "publisher": "Under Review",
+      "releaseDate": "2023-12-01",
+      "url": "",
+      "summary": "First author paper under review by professor. Pioneered the integration of Bengali language into the realm of Adversarial Attacks and Adversarial Training. Devised three potent adversarial attack strategies tailored for Bengali, demonstrating remarkable success in undermining classification tasks."
     }
   ],
   "skills": [
     {
-      "name": "Physics",
-      "level": "Master",
-      "icon": "fa-solid fa-hashtag",
+      "name": "Programming Languages",
+      "level": "Expert",
+      "icon": "fa-solid fa-code",
       "keywords": [
-        "Quantum Mechanics",
-        "Quantum Computing",
-        "Quantum Information",
-        "Quantum Cryptography",
-        "Quantum Communication",
-        "Quantum Teleportation"
+        "Python",
+        "Dart",
+        "C",
+        "C++",
+        "WolframScript"
+      ]
+    },
+    {
+      "name": "MLOps Platforms",
+      "level": "Advanced",
+      "icon": "fa-solid fa-cloud",
+      "keywords": [
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "Kuberflow",
+        "Amazon Sage Maker",
+        "Paper Space"
+      ]
+    },
+    {
+      "name": "Machine Learning & AI",
+      "level": "Expert",
+      "icon": "fa-solid fa-brain",
+      "keywords": [
+        "Scikit-learn",
+        "Transformers",
+        "ONNX",
+        "TextAttack",
+        "nltk",
+        "TensorFlow",
+        "Neural Networks",
+        "RNN",
+        "LSTM",
+        "Transfer Learning"
+      ]
+    },
+    {
+      "name": "Natural Language Processing",
+      "level": "Expert",
+      "icon": "fa-solid fa-language",
+      "keywords": [
+        "Langchain",
+        "Langflow",
+        "CreawAI",
+        "GROQ",
+        "MistralAI",
+        "ChromaDB",
+        "Bengali NLP",
+        "Adversarial Attacks"
       ]
     }
   ],
   "languages": [
     {
-      "language": "German",
+      "language": "Bengali",
       "fluency": "Native speaker",
       "icon": ""
     },
@@ -163,38 +206,58 @@
   ],
   "interests": [
     {
-      "name": "Physics",
-      "icon": "fa-solid fa-tag",
+      "name": "Research",
+      "icon": "fa-solid fa-microscope",
       "keywords": [
-        "Quantum Mechanics",
-        "Quantum Computing",
-        "Quantum Information",
-        "Quantum Cryptography",
-        "Quantum Communication",
-        "Quantum Teleportation"
+        "Natural Language Processing",
+        "Machine Learning Bias & Ethics",
+        "Reinforcement Learning",
+        "AI in Health & Education",
+        "Bengali Language Processing",
+        "Adversarial Machine Learning"
+      ]
+    },
+    {
+      "name": "Music",
+      "icon": "fa-solid fa-music",
+      "keywords": [
+        "Guitar",
+        "Harmonium",
+        "Musical Expression"
       ]
     }
   ],
   "references": [
     {
-      "name": "Professor John Doe",
-      "icon": "fa-solid fa-laptop",
-      "reference": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit. D"
-    },
-    {
-      "name": "Professor John Doe",
-      "icon": "fa-solid fa-thumbtack",
-      "reference": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit. D"
+      "name": "Dr. Farig Yousuf Sadeque",
+      "icon": "fa-solid fa-user-graduate",
+      "reference": "Assistant Professor, BRAC University. Thesis Supervisor for destroR project. Expert in Natural Language Processing and Machine Learning."
     }
   ],
   "projects": [
     {
-      "name": "Quantum Computing",
-      "summary": "Quantum computing is the use of quantum-mechanical phenomena such as superposition and entanglement to perform computation. Computers that perform quantum computations are known as quantum computers.",
-      "highlights": ["Quantum Teleportation", "Quantum Cryptography"],
-      "startDate": "2018-01-01",
-      "endDate": "2018-01-01",
-      "url": "https://example.com"
+      "name": "destroR: Attacking Transfer Models with Obfuscous Examples to Discard Perplexity",
+      "summary": "Undergraduate thesis pioneering the integration of Bengali language into adversarial attacks and adversarial training. Devised three potent adversarial attack strategies tailored for Bengali.",
+      "highlights": ["18-40% decrease in F1 Score", "First Bengali adversarial attacks", "Under review for publication"],
+      "startDate": "2022-01-01",
+      "endDate": "2023-12-01",
+      "url": ""
+    },
+    {
+      "name": "SemEval 23 Task 10: Explainable Detection of Online Sexism (EDOS)",
+      "summary": "Explored the task with a statistical approach achieving top 12 worldwide ranking with Micros F1 Score of 53.47%.",
+      "highlights": ["Top 12 worldwide", "Statistical approach", "F1 Score: 53.47%"],
+      "startDate": "2023-01-01",
+      "endDate": "2023-06-01",
+      "url": "https://semeval.github.io/"
+    },
+    {
+      "name": "BSenti: Bangla Sentiment Classification Python Library",
+      "summary": "Generalized the Bangla Sentiment Classification Datasets and provided a comparative status of statistical and deep-learning models.",
+      "highlights": ["Python library", "Bengali sentiment analysis", "Comparative model analysis"],
+      "startDate": "2022-01-01",
+      "endDate": "2023-01-01",
+      "url": ""
     }
   ]
 }
