@@ -156,7 +156,7 @@ export default function RootLayout({
           }}
         />
         {/* Google Search Console verification — replace content with your verification code */}
-        <meta name="google-site-verification" content="REPLACE_WITH_YOUR_VERIFICATION_CODE" />
+        <meta name="google-site-verification" content="0A1aMNMoycZtaUWqRAyuTIwie2HuqDQpmpsPUT5TE4Y" />
       </head>
       <body className="min-h-screen overflow-x-hidden">{children}</body>
     </html>
