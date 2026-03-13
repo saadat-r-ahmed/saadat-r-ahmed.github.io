@@ -5,6 +5,7 @@ const SITE_URL = "https://saadat-r-ahmed.github.io";
 const SITE_TITLE = "Saadat Rafid Ahmed — Researcher & ML Engineer";
 const SITE_DESC =
   "Lecturer at BRAC University & ML Team Lead at Innospace. Specializing in low-resource NLP, adversarial machine learning, RAG systems, and AI for education. Seeking fully-funded graduate positions.";
+const GA_ID = "G-83NF2NJYPN";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -147,6 +148,15 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* Google Analytics 4 */}
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`,
+          }}
+        />
+        {/* Google Search Console verification — replace content with your verification code */}
+        <meta name="google-site-verification" content="REPLACE_WITH_YOUR_VERIFICATION_CODE" />
       </head>
       <body className="min-h-screen overflow-x-hidden">{children}</body>
     </html>
