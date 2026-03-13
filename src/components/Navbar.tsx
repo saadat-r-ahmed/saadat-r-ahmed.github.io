@@ -51,7 +51,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="/Saadat_Rafid_Ahmed_CV.pdf"
+            href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="ml-2 px-4 py-2 text-sm font-medium rounded-lg bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 hover:bg-indigo-600/30 hover:border-indigo-400/50 transition-all duration-200"
@@ -88,7 +88,7 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="/Saadat_Rafid_Ahmed_CV.pdf"
+                href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-2 px-4 py-2.5 text-sm font-medium text-center rounded-lg bg-indigo-600/20 text-indigo-300 border border-indigo-500/30"
