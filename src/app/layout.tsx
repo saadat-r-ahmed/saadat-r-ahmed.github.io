@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 const SITE_URL = "https://saadat-r-ahmed.github.io";
-const SITE_TITLE = "Saadat Rafid Ahmed — Researcher & ML Engineer";
+const SITE_TITLE =
+  "Saadat Rafid Ahmed — Lecturer, Computer Science and Engineering, BRAC University";
 const SITE_DESC =
-  "Lecturer at BRAC University & ML Team Lead at Innospace. Specializing in low-resource NLP, adversarial machine learning, RAG systems, and AI for education. Seeking fully-funded graduate positions.";
+  "Academic homepage of Saadat Rafid Ahmed, Lecturer in Computer Science and Engineering at BRAC University. Research on sequence models, learning under label scarcity, and the robustness of transfer-learned representations. Seeking a fully funded PhD in bioinformatics and computational genomics.";
 const GA_ID = "G-83NF2NJYPN";
 
 export const metadata: Metadata = {
@@ -16,20 +17,18 @@ export const metadata: Metadata = {
   description: SITE_DESC,
   keywords: [
     "Saadat Rafid Ahmed",
-    "NLP researcher",
-    "Machine Learning engineer",
-    "BRAC University lecturer",
-    "adversarial NLP",
-    "low-resource NLP",
-    "Bengali NLP",
-    "RAG systems",
-    "AI for education",
+    "computational genomics",
+    "bioinformatics PhD applicant",
+    "sequence modeling",
+    "representation learning",
+    "adversarial robustness",
     "transfer learning robustness",
-    "ML portfolio",
-    "computer science researcher",
+    "low-resource NLP",
+    "machine learning under label scarcity",
+    "retrieval-augmented generation",
+    "BRAC University",
     "Dhaka Bangladesh",
-    "HuggingFace Transformers",
-    "sentiment analysis Bengali",
+    "academic homepage",
   ],
   authors: [{ name: "Saadat Rafid Ahmed", url: SITE_URL }],
   creator: "Saadat Rafid Ahmed",
@@ -40,7 +39,6 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
     },
@@ -51,15 +49,8 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: "Saadat Rafid Ahmed",
     locale: "en_US",
-    type: "website",
-    images: [
-      {
-        url: "/icon.png",
-        width: 400,
-        height: 400,
-        alt: "Saadat Rafid Ahmed",
-      },
-    ],
+    type: "profile",
+    images: [{ url: "/icon.png", width: 400, height: 400, alt: "Saadat Rafid Ahmed" }],
   },
   twitter: {
     card: "summary",
@@ -67,17 +58,11 @@ export const metadata: Metadata = {
     description: SITE_DESC,
     images: ["/icon.png"],
   },
-  alternates: {
-    canonical: SITE_URL,
-  },
-  icons: {
-    icon: "/icon.png",
-    apple: "/icon.png",
-  },
-  category: "technology",
+  alternates: { canonical: SITE_URL },
+  icons: { icon: "/icon.png", apple: "/icon.png" },
+  category: "science",
 };
 
-// JSON-LD Structured Data
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -93,37 +78,37 @@ const jsonLd = {
       "@id": `${SITE_URL}/#person`,
       name: "Saadat Rafid Ahmed",
       url: SITE_URL,
-      jobTitle: ["Lecturer", "ML Team Lead"],
+      jobTitle: "Lecturer",
+      affiliation: {
+        "@type": "CollegeOrUniversity",
+        name: "BRAC University",
+        department: "Department of Computer Science and Engineering",
+      },
       worksFor: [
         {
-          "@type": "Organization",
+          "@type": "CollegeOrUniversity",
           name: "BRAC University",
           department: "Department of Computer Science and Engineering",
         },
-        {
-          "@type": "Organization",
-          name: "Innospace Infotech Ltd.",
-        },
+        { "@type": "Organization", name: "Innospace Infotech Ltd." },
       ],
-      alumniOf: {
-        "@type": "CollegeOrUniversity",
-        name: "BRAC University",
-      },
+      alumniOf: { "@type": "CollegeOrUniversity", name: "BRAC University" },
       knowsAbout: [
+        "Sequence Modeling",
+        "Representation Learning",
+        "Machine Learning under Label Scarcity",
+        "Robustness of Transfer-Learned Models",
         "Natural Language Processing",
-        "Machine Learning",
-        "Adversarial Machine Learning",
-        "Low-Resource NLP",
-        "Bengali Language Technology",
+        "Low-Resource Language Technology",
         "Retrieval-Augmented Generation",
-        "AI for Education",
-        "Transfer Learning",
+        "Bioinformatics",
+        "Computational Genomics",
       ],
       sameAs: [
         "https://github.com/saadat-r-ahmed",
         "https://cse.sds.bracu.ac.bd/faculty_profile/311/saadat_rafid_ahmed",
       ],
-      email: "mailto:saadat.r.ahmed@gmail.com",
+      email: ["mailto:saadat.r.ahmed@gmail.com", "mailto:saadat.ahmed@bracu.ac.bd"],
       address: {
         "@type": "PostalAddress",
         addressLocality: "Dhaka",
@@ -139,7 +124,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <head>
         <link rel="icon" href="/icon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/icon.png" />
@@ -155,10 +140,12 @@ export default function RootLayout({
             __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`,
           }}
         />
-        {/* Google Search Console verification — replace content with your verification code */}
-        <meta name="google-site-verification" content="0A1aMNMoycZtaUWqRAyuTIwie2HuqDQpmpsPUT5TE4Y" />
+        <meta
+          name="google-site-verification"
+          content="0A1aMNMoycZtaUWqRAyuTIwie2HuqDQpmpsPUT5TE4Y"
+        />
       </head>
-      <body className="min-h-screen overflow-x-hidden">{children}</body>
+      <body className="min-h-screen">{children}</body>
     </html>
   );
 }
